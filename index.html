@@ -3,1126 +3,970 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasterClass Registration - Mr. Guiseppe Fausto Mudugno</title>
+    <title>MasterClass Registration - Guiseppe Fausto Mudugno</title>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- QR Code Generator -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     
     <style>
         :root {
             --primary-color: #8B4513;
-            --secondary-color: #D2B48C;
+            --secondary-color: #D2691E;
             --accent-color: #FFD700;
             --text-color: #333;
-            --light-bg: #F5F5DC;
-            --dark-bg: #222;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --light-bg: #FFF8DC;
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light-bg);
+            font-family: 'Roboto', sans-serif;
             color: var(--text-color);
-            line-height: 1.6;
+            background-color: var(--light-bg);
             overflow-x: hidden;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
+        .navbar-brand {
             font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/seed/musicclass/1920/800.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .professor-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .professor-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .professor-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .form-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .form-control, .form-select {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.25rem rgba(210, 105, 30, 0.25);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .price-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .price-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        
+        .price-card.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(139, 69, 19, 0.05);
+        }
+        
+        .price-card h5 {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .price-card .price {
             font-size: 24px;
             font-weight: 700;
-            color: var(--accent-color);
-        }
-        
-        /* Language Selector */
-        .language-selector {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .language-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .language-btn.active {
-            background: var(--accent-color);
-            color: var(--primary-color);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 40px 0;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .professor-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .professor-details h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-        
-        .professor-details p {
-            font-size: 18px;
-            color: #666;
-        }
-        
-        .event-details {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-        
-        .event-details h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-        
-        .event-details p {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        /* Registration Form */
-        .registration-form {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 16px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
-        }
-        
-        .radio-group, .checkbox-group {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .radio-item, .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .radio-item input, .checkbox-item input {
-            width: 18px;
-            height: 18px;
-        }
-        
-        .fee-display {
-            background: var(--light-bg);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-weight: 500;
-            display: none;
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .fee-display.show {
-            display: block;
+            color: var(--secondary-color);
         }
         
         .payment-info {
-            background: var(--light-bg);
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 20px;
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
             display: none;
-        }
-        
-        .payment-info.show {
-            display: block;
-        }
-        
-        .payment-details {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .qr-code {
-            width: 180px;
-            height: 180px;
-            background: white;
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .account-info {
-            flex: 1;
-        }
-        
-        .account-info p {
-            margin-bottom: 12px;
-            font-size: 16px;
-        }
-        
-        .account-info strong {
-            color: var(--primary-color);
-        }
-        
-        .btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-            font-size: 16px;
-        }
-        
-        .btn:hover {
-            background: #6B3410;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-submit {
-            margin-top: 20px;
-            width: 100%;
-            padding: 15px;
-            font-size: 18px;
-        }
-        
-        /* Music Animation */
-        .music-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.1;
         }
         
         .music-note {
             position: absolute;
             font-size: 30px;
-            animation: float 15s infinite linear;
+            color: var(--accent-color);
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
         }
         
         @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
         
-        /* Footer */
-        footer {
-            background: var(--dark-bg);
+        .note1 { top: 20%; left: 5%; animation-delay: 0s; }
+        .note2 { top: 60%; left: 10%; animation-delay: 1s; }
+        .note3 { top: 30%; right: 10%; animation-delay: 2s; }
+        .note4 { top: 70%; right: 5%; animation-delay: 3s; }
+        
+        .language-selector {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        
+        .footer {
+            background-color: var(--primary-color);
             color: white;
-            padding: 40px 0;
-            text-align: center;
+            padding: 30px 0;
         }
         
-        .footer-content {
+        .contact-info {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .footer-section h3 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-            font-size: 20px;
-        }
-        
-        .footer-section p, .footer-section a {
-            color: #ccc;
-            text-decoration: none;
+            align-items: center;
             margin-bottom: 10px;
-            display: block;
-            font-size: 16px;
         }
         
-        .footer-section a:hover {
+        .contact-info i {
+            margin-right: 10px;
             color: var(--accent-color);
         }
         
-        .social-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
+        #qrCode {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
         }
         
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--accent-color);
-            color: var(--primary-color);
-        }
-        
-        .copyright {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-            color: #999;
-        }
-        
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 20px 25px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            transform: translateX(150%);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-            max-width: 350px;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification.success {
-            border-left: 5px solid #4CAF50;
-        }
-        
-        .notification.error {
-            border-left: 5px solid #F44336;
-        }
-        
-        .notification-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-        
-        .notification-message {
-            font-size: 16px;
-        }
-        
-        /* Loading Spinner */
-        .loading {
+        .success-message {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
         
-        .loading.show {
-            display: flex;
+        .error-message {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
         
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            .payment-details {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-            }
-            
-            .notification {
-                right: 10px;
-                left: 10px;
-                max-width: none;
-            }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
         }
     </style>
 </head>
 <body>
-    <!-- Music Animation Background -->
-    <div class="music-animation">
-        <div class="music-note" style="left: 10%; animation-delay: 0s;">♪</div>
-        <div class="music-note" style="left: 20%; animation-delay: 2s;">♫</div>
-        <div class="music-note" style="left: 30%; animation-delay: 4s;">♬</div>
-        <div class="music-note" style="left: 40%; animation-delay: 6s;">♩</div>
-        <div class="music-note" style="left: 50%; animation-delay: 8s;">♪</div>
-        <div class="music-note" style="left: 60%; animation-delay: 10s;">♫</div>
-        <div class="music-note" style="left: 70%; animation-delay: 12s;">♬</div>
-        <div class="music-note" style="left: 80%; animation-delay: 14s;">♩</div>
-        <div class="music-note" style="left: 90%; animation-delay: 16s;">♪</div>
-    </div>
+    <!-- Music Notes Animation -->
+    <div class="music-note note1"><i class="fas fa-music"></i></div>
+    <div class="music-note note2"><i class="fas fa-music"></i></div>
+    <div class="music-note note3"><i class="fas fa-music"></i></div>
+    <div class="music-note note4"><i class="fas fa-music"></i></div>
     
-    <!-- Loading Spinner -->
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
-    </div>
-    
-    <!-- Header -->
-    <header>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <div class="header-content">
-                <div class="logo">Yayasan Musik Jakarta</div>
-                <div class="language-selector">
-                    <button class="language-btn active" data-lang="id">Indonesia</button>
-                    <button class="language-btn" data-lang="en">English</button>
-                    <button class="language-btn" data-lang="zh">中文</button>
-                </div>
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-music me-2"></i>MasterClass Registration
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#professor">Professor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#registration">Pendaftaran</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </header>
+    </nav>
+    
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select class="form-select" id="languageSelector" style="width: 120px;">
+            <option value="id">Indonesia</option>
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+        </select>
+    </div>
     
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title" data-aos="fade-up">MasterClass Dengan Mr. Guiseppe Fausto Mudugno</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="100">Director, Conservatorio "Vechi-Tonelli" Modena, Italy</p>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">Organized by: Yayasan Musik Jakarta</p>
+            <p class="lead" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-calendar-alt me-2"></i>23-24 Juni 2023
+            </p>
+            <p class="lead" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-map-marker-alt me-2"></i>YMJ BSD Auditorium Jl. Letnan Soetopo, BSD
+            </p>
+            <a href="#registration" class="btn btn-primary btn-lg mt-4" data-aos="fade-up" data-aos-delay="500">
+                Daftar Sekarang
+            </a>
+        </div>
+    </section>
+    
+    <!-- Professor Section -->
+    <section id="professor" class="py-5">
         <div class="container">
-            <h1 data-translate="title">MasterClass Registration</h1>
-            
-            <div class="professor-info">
-                <div class="professor-details">
-                    <h2>Mr. Guiseppe Fausto Mudugno</h2>
-                    <p data-translate="professor-title">Director, Conservatorio "Vechi-Tonelli", Modena, Italy</p>
+            <h2 class="section-title" data-aos="fade-up">Tentang Professor</h2>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="professor-card">
+                        <img src="https://picsum.photos/seed/professor/600/400.jpg" alt="Guiseppe Fausto Mudugno" class="professor-img">
+                        <div class="p-4">
+                            <h3>Mr. Guiseppe Fausto Mudugno</h3>
+                            <p class="text-muted">Director, Conservatorio "Vechi-Tonelli" Modena, Italy</p>
+                            <p>Mr. Guiseppe Fausto Mudugno adalah seorang direktur dan musisi terkenal dari Conservatorio "Vechi-Tonelli" di Modena, Italia. Dengan pengalaman lebih dari 20 tahun dalam dunia musik klasik, beliau telah menginspirasi banyak musisi muda di seluruh dunia.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="event-details">
-                <h3 data-translate="event-details">Event Details</h3>
-                <p><strong data-translate="organized-by">Organized by:</strong> Yayasan Musik Jakarta</p>
-                <p><strong data-translate="venue">Venue:</strong> YMJ BSD Auditorium Jl. Letnan Soetopo, BSD</p>
-                <p><strong data-translate="dates">Dates:</strong> 23-24 June 2023</p>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="professor-card h-100">
+                        <div class="p-4">
+                            <h3>Tentang MasterClass</h3>
+                            <p>MasterClass ini dirancang untuk memberikan pengalaman belajar yang mendalam tentang teknik musik klasik dan interpretasi musik dari seorang ahli. Peserta akan mendapatkan wawasan berharga tentang:</p>
+                            <ul>
+                                <li>Teknik permainan instrumen yang advanced</li>
+                                <li>Interpretasi musik klasik</li>
+                                <li>Pendekatan historis dalam musik</li>
+                                <li>Tips karir di dunia musik klasik</li>
+                            </ul>
+                            <p>MasterClass ini terbuka untuk pemusik dari berbagai tingkatan, dari pemula hingga profesional.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Registration Form -->
-    <section class="registration-form">
+    <!-- Registration Section -->
+    <section id="registration" class="py-5">
         <div class="container">
-            <h2 data-translate="form-title">Registration Form</h2>
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label for="name" data-translate="name-label">Full Name *</label>
-                    <input type="text" id="name" name="name" class="form-control" required>
+            <h2 class="section-title" data-aos="fade-up">Formulir Pendaftaran</h2>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle me-2"></i>
+                <span id="successText">Pendaftaran berhasil! Anda akan diarahkan ke WhatsApp untuk konfirmasi.</span>
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <span id="errorText">Terjadi kesalahan. Silakan coba lagi.</span>
+            </div>
+            
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
-                
-                <div class="form-group">
-                    <label for="email" data-translate="email-label">Email *</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone" data-translate="phone-label">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="school" data-translate="school-label">School/Institution *</label>
-                    <input type="text" id="school" name="school" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="education-level" data-translate="education-label">Education Level *</label>
-                    <select id="education-level" name="education-level" class="form-control" required>
-                        <option value="" disabled selected data-translate="select-education">Select Education Level</option>
-                        <option value="elementary" data-translate="elementary">Elementary School</option>
-                        <option value="junior-high" data-translate="junior-high">Junior High School</option>
-                        <option value="senior-high" data-translate="senior-high">Senior High School</option>
-                        <option value="university" data-translate="university">University</option>
-                        <option value="professional" data-translate="professional">Professional</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label data-translate="ymj-member-label">Are you a YMJ member? *</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="ymj-yes" name="ymj-member" value="yes" required>
-                            <label for="ymj-yes" data-translate="yes">Yes</label>
+                <p class="mt-2">Sedang memproses pendaftaran...</p>
+            </div>
+            
+            <div class="form-section" data-aos="fade-up">
+                <form id="registrationForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
                         </div>
-                        <div class="radio-item">
-                            <input type="radio" id="ymj-no" name="ymj-member" value="no" required>
-                            <label for="ymj-no" data-translate="no">No</label>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label data-translate="participation-label">Participation Type *</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="passive" name="participation-type" value="passive" required>
-                            <label for="passive" data-translate="passive">Passive (Observation)</label>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">No. HP</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
                         </div>
-                        <div class="radio-item">
-                            <input type="radio" id="active" name="participation-type" value="active" required>
-                            <label for="active" data-translate="active">Active</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group" id="role-group" style="display: none;">
-                    <label data-translate="role-label">Role *</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="teacher" name="role" value="teacher">
-                            <label for="teacher" data-translate="teacher">Teacher</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="student" name="role" value="student">
-                            <label for="student" data-translate="student">Student</label>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="school" class="form-label">Asal Sekolah/Institusi</label>
+                                <input type="text" class="form-control" id="school" required>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="fee-display" id="fee-display">
-                    <p data-translate="fee-info">Registration Fee:</p>
-                    <p id="fee-amount" style="font-size: 24px; font-weight: 600; color: var(--primary-color);"></p>
-                </div>
-                
-                <div class="payment-info" id="payment-info">
-                    <h3 data-translate="payment-info-title">Payment Information</h3>
-                    <div class="payment-details">
-                        <div class="qr-code">
-                            <i class="fas fa-qrcode" style="font-size: 120px; color: #ddd;"></i>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="level" class="form-label">Tingkat Sekolah</label>
+                                <select class="form-select" id="level" required>
+                                    <option value="" selected disabled>Pilih Tingkat</option>
+                                    <option value="sd">SD</option>
+                                    <option value="smp">SMP</option>
+                                    <option value="sma">SMA</option>
+                                    <option value="universitas">Universitas</option>
+                                    <option value="profesional">Profesional</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="account-info">
-                            <p><strong data-translate="bank-name">Bank:</strong> BANK BCA</p>
-                            <p><strong data-translate="account-number">Account Number:</strong> 5880182244</p>
-                            <p><strong data-translate="account-name">Account Name:</strong> Yay Musik Jakarta</p>
-                            <p data-translate="payment-instruction">Please transfer the registration fee to the account above and upload the payment proof below.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group" id="date-group" style="display: none;">
-                    <label data-translate="date-label">Select MasterClass Date *</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="date-23" name="date" value="23">
-                            <label for="date-23">23 June 2023</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="date-24" name="date" value="24">
-                            <label for="date-24">24 June 2023</label>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="ymjStatus" class="form-label">Status YMJ</label>
+                                <select class="form-select" id="ymjStatus" required>
+                                    <option value="" selected disabled>Pilih Status</option>
+                                    <option value="ymj-teacher">Guru YMJ</option>
+                                    <option value="ymj-student">Siswa YMJ</option>
+                                    <option value="non-ymj">Non-YMJ</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="participationType" class="form-label">Tipe Partisipasi</label>
+                                <select class="form-select" id="participationType" required>
+                                    <option value="" selected disabled>Pilih Tipe Partisipasi</option>
+                                    <option value="passive">Passive Participant (Observation)</option>
+                                    <option value="active">Active Participant</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="reservationDate" class="form-label">Reservasi Tanggal</label>
+                                <select class="form-select" id="reservationDate" required>
+                                    <option value="" selected disabled>Pilih Tanggal</option>
+                                    <option value="23">23 Juni 2023</option>
+                                    <option value="24">24 Juni 2023</option>
+                                    <option value="both">23 & 24 Juni 2023</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="price-options">
+                        <h4 class="mb-3">Pilih Paket Partisipasi</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="price-card" data-type="passive" data-ymj="ymj-teacher" data-price="0">
+                                    <h5>Passive Participant - YMJ Teacher</h5>
+                                    <p>Observation only</p>
+                                    <div class="price">Free of Charge</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="price-card" data-type="passive" data-ymj="ymj-student" data-price="0">
+                                    <h5>Passive Participant - YMJ Student</h5>
+                                    <p>Observation only</p>
+                                    <div class="price">Free of Charge</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="price-card" data-type="passive" data-ymj="non-ymj" data-price="50000">
+                                    <h5>Passive Participant - Non-YMJ</h5>
+                                    <p>Observation only</p>
+                                    <div class="price">IDR 50,000</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="price-card" data-type="active" data-ymj="ymj-teacher" data-price="100000">
+                                    <h5>Active Participant - YMJ Teacher</h5>
+                                    <p>Full participation</p>
+                                    <div class="price">IDR 100,000</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="price-card" data-type="active" data-ymj="ymj-student" data-price="500000">
+                                    <h5>Active Participant - YMJ Student</h5>
+                                    <p>Full participation</p>
+                                    <div class="price">IDR 500,000</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="price-card" data-type="active" data-ymj="non-ymj" data-price="650000">
+                                    <h5>Active Participant - Non-YMJ</h5>
+                                    <p>Full participation</p>
+                                    <div class="price">IDR 650,000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-info" id="paymentInfo">
+                        <h4 class="mb-3">Informasi Pembayaran</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Bank:</strong> BCA</p>
+                                <p><strong>No. Rekening:</strong> 5880182244</p>
+                                <p><strong>a.n.:</strong> Yay Musik Jakarta</p>
+                                <p><strong>Total Pembayaran:</strong> <span id="totalPayment" class="fw-bold text-danger">IDR 0</span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="qrCode"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <label for="paymentProof" class="form-label">Upload Bukti Pembayaran</label>
+                            <input type="file" class="form-control" id="paymentProof" accept="image/*" required>
+                            <div class="form-text">Format: JPG, PNG, maksimal 2MB</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <i class="fas fa-paper-plane me-2"></i>Kirim Pendaftaran
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Hubungi Kami</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+62 811-9892-413</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@ymj.or.id</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>YMJ BSD Auditorium Jl. Letnan Soetopo, BSD</span>
+                    </div>
                 </div>
-                
-                <div class="form-group" id="payment-proof-group" style="display: none;">
-                    <label for="payment-proof" data-translate="payment-proof-label">Upload Payment Proof *</label>
-                    <input type="file" id="payment-proof" name="payment-proof" class="form-control" accept="image/*">
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.63962891476913!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f9395e5b4c9b%3A0x6c5b5b5b5b5b5b5b!2sBSD%20City!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
                 </div>
-                
-                <button type="submit" class="btn btn-submit" data-translate="submit-btn">Submit Registration</button>
-            </form>
+            </div>
         </div>
     </section>
     
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 data-translate="contact-us">Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Jl. Letnan Soetopo, BSD</p>
-                    <p><i class="fas fa-phone"></i> +62 811-9892-413</p>
-                    <p><i class="fas fa-envelope"></i> info@ymj.org</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Yayasan Musik Jakarta</h5>
+                    <p>Mendorong dan mengembangkan pendidikan musik di Indonesia</p>
                 </div>
-                
-                <div class="footer-section">
-                    <h3 data-translate="quick-links">Quick Links</h3>
-                    <a href="#" data-translate="about-us">About Us</a>
-                    <a href="#" data-translate="programs">Programs</a>
-                    <a href="#" data-translate="events">Events</a>
-                    <a href="#" data-translate="gallery">Gallery</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 data-translate="follow-us">Follow Us</h3>
+                <div class="col-md-6 text-md-end">
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
                     </div>
+                    <p class="mt-3">&copy; 2023 Yayasan Musik Jakarta. All rights reserved.</p>
                 </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Yayasan Musik Jakarta. All rights reserved.</p>
             </div>
         </div>
     </footer>
     
-    <!-- Notification -->
-    <div class="notification" id="notification">
-        <div class="notification-title" id="notification-title"></div>
-        <div class="notification-message" id="notification-message"></div>
-    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
-        // Translation data
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Language translations
         const translations = {
             id: {
-                "title": "Pendaftaran MasterClass",
-                "professor-title": "Direktur, Conservatorio \"Vechi-Tonelli\", Modena, Italia",
-                "event-details": "Detail Acara",
-                "organized-by": "Diselenggarakan oleh:",
-                "venue": "Tempat:",
-                "dates": "Tanggal:",
-                "form-title": "Formulir Pendaftaran",
-                "name-label": "Nama Lengkap",
-                "email-label": "Email",
-                "phone-label": "Nomor HP",
-                "school-label": "Asal Sekolah/Institusi",
-                "education-label": "Tingkat Pendidikan",
-                "select-education": "Pilih Tingkat Pendidikan",
-                "elementary": "SD",
-                "junior-high": "SMP",
-                "senior-high": "SMA",
-                "university": "Universitas",
-                "professional": "Profesional",
-                "ymj-member-label": "Apakah Anda anggota YMJ?",
-                "yes": "Ya",
-                "no": "Tidak",
-                "participation-label": "Jenis Partisipasi",
-                "passive": "Pasif (Observasi)",
-                "active": "Aktif",
-                "role-label": "Peran",
-                "teacher": "Guru",
-                "student": "Siswa",
-                "fee-info": "Biaya Pendaftaran:",
-                "payment-info-title": "Informasi Pembayaran",
-                "bank-name": "Bank:",
-                "account-name": "Nama Akun:",
-                "account-number": "Nomor Akun:",
-                "payment-instruction": "Silakan transfer biaya pendaftaran ke akun di atas dan unggah bukti pembayaran di bawah ini.",
-                "date-label": "Pilih Tanggal MasterClass",
-                "payment-proof-label": "Unggah Bukti Pembayaran",
-                "submit-btn": "Kirim Pendaftaran",
-                "contact-us": "Hubungi Kami",
-                "quick-links": "Tautan Cepat",
-                "follow-us": "Ikuti Kami",
-                "about-us": "Tentang Kami",
-                "programs": "Program",
-                "events": "Acara",
-                "gallery": "Galeri",
-                "free": "Gratis",
-                "currency": "IDR",
-                "success-title": "Pendaftaran Berhasil!",
-                "success-message": "Terima kasih telah mendaftar. Anda akan diarahkan ke WhatsApp.",
-                "error-title": "Terjadi Kesalahan",
-                "error-message": "Silakan coba lagi atau hubungi kami.",
-                "validation-date": "Silakan pilih setidaknya satu tanggal untuk MasterClass",
-                "validation-payment": "Silakan unggah bukti pembayaran"
+                home: "Beranda",
+                professor: "Professor",
+                registration: "Pendaftaran",
+                contact: "Kontak",
+                fullName: "Nama Lengkap",
+                email: "Email",
+                phone: "No. HP",
+                school: "Asal Sekolah/Institusi",
+                level: "Tingkat Sekolah",
+                ymjStatus: "Status YMJ",
+                participationType: "Tipe Partisipasi",
+                reservationDate: "Reservasi Tanggal",
+                passiveParticipant: "Passive Participant (Observation)",
+                activeParticipant: "Active Participant",
+                selectLevel: "Pilih Tingkat",
+                selectStatus: "Pilih Status",
+                selectType: "Pilih Tipe Partisipasi",
+                selectDate: "Pilih Tanggal",
+                paymentInfo: "Informasi Pembayaran",
+                uploadPaymentProof: "Upload Bukti Pembayaran",
+                sendRegistration: "Kirim Pendaftaran",
+                successMessage: "Pendaftaran berhasil! Anda akan diarahkan ke WhatsApp untuk konfirmasi.",
+                errorMessage: "Terjadi kesalahan. Silakan coba lagi.",
+                processing: "Sedang memproses pendaftaran...",
+                freeOfCharge: "Free of Charge",
+                observationOnly: "Observation only",
+                fullParticipation: "Full participation"
             },
             en: {
-                "title": "MasterClass Registration",
-                "professor-title": "Director, Conservatorio \"Vechi-Tonelli\", Modena, Italy",
-                "event-details": "Event Details",
-                "organized-by": "Organized by:",
-                "venue": "Venue:",
-                "dates": "Dates:",
-                "form-title": "Registration Form",
-                "name-label": "Full Name",
-                "email-label": "Email",
-                "phone-label": "Phone Number",
-                "school-label": "School/Institution",
-                "education-label": "Education Level",
-                "select-education": "Select Education Level",
-                "elementary": "Elementary School",
-                "junior-high": "Junior High School",
-                "senior-high": "Senior High School",
-                "university": "University",
-                "professional": "Professional",
-                "ymj-member-label": "Are you a YMJ member?",
-                "yes": "Yes",
-                "no": "No",
-                "participation-label": "Participation Type",
-                "passive": "Passive (Observation)",
-                "active": "Active",
-                "role-label": "Role",
-                "teacher": "Teacher",
-                "student": "Student",
-                "fee-info": "Registration Fee:",
-                "payment-info-title": "Payment Information",
-                "bank-name": "Bank:",
-                "account-name": "Account Name:",
-                "account-number": "Account Number:",
-                "payment-instruction": "Please transfer the registration fee to the account above and upload the payment proof below.",
-                "date-label": "Select MasterClass Date",
-                "payment-proof-label": "Upload Payment Proof",
-                "submit-btn": "Submit Registration",
-                "contact-us": "Contact Us",
-                "quick-links": "Quick Links",
-                "follow-us": "Follow Us",
-                "about-us": "About Us",
-                "programs": "Programs",
-                "events": "Events",
-                "gallery": "Gallery",
-                "free": "Free",
-                "currency": "IDR",
-                "success-title": "Registration Successful!",
-                "success-message": "Thank you for registering. You will be redirected to WhatsApp.",
-                "error-title": "An Error Occurred",
-                "error-message": "Please try again or contact us.",
-                "validation-date": "Please select at least one date for the MasterClass",
-                "validation-payment": "Please upload payment proof"
+                home: "Home",
+                professor: "Professor",
+                registration: "Registration",
+                contact: "Contact",
+                fullName: "Full Name",
+                email: "Email",
+                phone: "Phone Number",
+                school: "School/Institution",
+                level: "Education Level",
+                ymjStatus: "YMJ Status",
+                participationType: "Participation Type",
+                reservationDate: "Reservation Date",
+                passiveParticipant: "Passive Participant (Observation)",
+                activeParticipant: "Active Participant",
+                selectLevel: "Select Level",
+                selectStatus: "Select Status",
+                selectType: "Select Participation Type",
+                selectDate: "Select Date",
+                paymentInfo: "Payment Information",
+                uploadPaymentProof: "Upload Payment Proof",
+                sendRegistration: "Send Registration",
+                successMessage: "Registration successful! You will be redirected to WhatsApp for confirmation.",
+                errorMessage: "An error occurred. Please try again.",
+                processing: "Processing registration...",
+                freeOfCharge: "Free of Charge",
+                observationOnly: "Observation only",
+                fullParticipation: "Full participation"
             },
             zh: {
-                "title": "大师课注册",
-                "professor-title": "意大利摩德纳\"Vechi-Tonelli\"音乐学院院长",
-                "event-details": "活动详情",
-                "organized-by": "主办方:",
-                "venue": "地点:",
-                "dates": "日期:",
-                "form-title": "注册表格",
-                "name-label": "全名",
-                "email-label": "电子邮件",
-                "phone-label": "电话号码",
-                "school-label": "学校/机构",
-                "education-label": "教育水平",
-                "select-education": "选择教育水平",
-                "elementary": "小学",
-                "junior-high": "初中",
-                "senior-high": "高中",
-                "university": "大学",
-                "professional": "专业",
-                "ymj-member-label": "您是YMJ会员吗?",
-                "yes": "是",
-                "no": "否",
-                "participation-label": "参与类型",
-                "passive": "被动（观察）",
-                "active": "主动",
-                "role-label": "角色",
-                "teacher": "教师",
-                "student": "学生",
-                "fee-info": "注册费:",
-                "payment-info-title": "付款信息",
-                "bank-name": "银行:",
-                "account-name": "账户名称:",
-                "account-number": "账户号码:",
-                "payment-instruction": "请将注册费转账到上述账户，并在下方上传付款证明。",
-                "date-label": "选择大师课日期",
-                "payment-proof-label": "上传付款证明",
-                "submit-btn": "提交注册",
-                "contact-us": "联系我们",
-                "quick-links": "快速链接",
-                "follow-us": "关注我们",
-                "about-us": "关于我们",
-                "programs": "项目",
-                "events": "活动",
-                "gallery": "画廊",
-                "free": "免费",
-                "currency": "印尼盾",
-                "success-title": "注册成功！",
-                "success-message": "感谢您的注册。您将被重定向到WhatsApp。",
-                "error-title": "发生错误",
-                "error-message": "请重试或联系我们。",
-                "validation-date": "请为大师课选择至少一个日期",
-                "validation-payment": "请上传付款证明"
+                home: "首页",
+                professor: "教授",
+                registration: "注册",
+                contact: "联系",
+                fullName: "全名",
+                email: "电子邮件",
+                phone: "电话号码",
+                school: "学校/机构",
+                level: "教育水平",
+                ymjStatus: "YMJ状态",
+                participationType: "参与类型",
+                reservationDate: "预订日期",
+                passiveParticipant: "被动参与者（观察）",
+                activeParticipant: "主动参与者",
+                selectLevel: "选择水平",
+                selectStatus: "选择状态",
+                selectType: "选择参与类型",
+                selectDate: "选择日期",
+                paymentInfo: "付款信息",
+                uploadPaymentProof: "上传付款证明",
+                sendRegistration: "发送注册",
+                successMessage: "注册成功！您将被重定向到WhatsApp进行确认。",
+                errorMessage: "发生错误。请再试一次。",
+                processing: "正在处理注册...",
+                freeOfCharge: "免费",
+                observationOnly: "仅观察",
+                fullParticipation: "全面参与"
             }
         };
         
-        // Current language
-        let currentLang = 'id';
-        
         // Language selector
-        $('.language-btn').on('click', function() {
-            $('.language-btn').removeClass('active');
-            $(this).addClass('active');
-            currentLang = $(this).data('lang');
-            translatePage();
+        document.getElementById('languageSelector').addEventListener('change', function() {
+            const lang = this.value;
+            updateLanguage(lang);
         });
         
-        // Translate page
-        function translatePage() {
-            $('[data-translate]').each(function() {
-                const key = $(this).data('translate');
-                $(this).text(translations[currentLang][key]);
+        function updateLanguage(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
             });
             
-            // Update currency symbol
-            $('#fee-amount').text(getFeeAmount());
+            // Update form labels
+            document.querySelector('label[for="name"]').textContent = translations[lang].fullName;
+            document.querySelector('label[for="email"]').textContent = translations[lang].email;
+            document.querySelector('label[for="phone"]').textContent = translations[lang].phone;
+            document.querySelector('label[for="school"]').textContent = translations[lang].school;
+            document.querySelector('label[for="level"]').textContent = translations[lang].level;
+            document.querySelector('label[for="ymjStatus"]').textContent = translations[lang].ymjStatus;
+            document.querySelector('label[for="participationType"]').textContent = translations[lang].participationType;
+            document.querySelector('label[for="reservationDate"]').textContent = translations[lang].reservationDate;
+            document.querySelector('label[for="paymentProof"]').textContent = translations[lang].uploadPaymentProof;
+            document.querySelector('#submitBtn').innerHTML = `<i class="fas fa-paper-plane me-2"></i>${translations[lang].sendRegistration}`;
+            document.querySelector('#successText').textContent = translations[lang].successMessage;
+            document.querySelector('#errorText').textContent = translations[lang].errorMessage;
+            document.querySelector('#loadingSpinner p').textContent = translations[lang].processing;
+            
+            // Update select options
+            document.querySelector('#level option[value=""]').textContent = translations[lang].selectLevel;
+            document.querySelector('#ymjStatus option[value=""]').textContent = translations[lang].selectStatus;
+            document.querySelector('#participationType option[value=""]').textContent = translations[lang].selectType;
+            document.querySelector('#reservationDate option[value=""]').textContent = translations[lang].selectDate;
+            document.querySelector('#participationType option[value="passive"]').textContent = translations[lang].passiveParticipant;
+            document.querySelector('#participationType option[value="active"]').textContent = translations[lang].activeParticipant;
+            
+            // Update price cards
+            document.querySelectorAll('.price-card p').forEach((element, index) => {
+                if (index % 3 === 0 || index % 3 === 1) {
+                    element.textContent = translations[lang].observationOnly;
+                } else {
+                    element.textContent = translations[lang].fullParticipation;
+                }
+            });
+            
+            document.querySelectorAll('.price-card .price').forEach(element => {
+                if (element.textContent === 'Free of Charge') {
+                    element.textContent = translations[lang].freeOfCharge;
+                }
+            });
+            
+            // Update nav links
+            document.querySelector('a[href="#home"]').textContent = translations[lang].home;
+            document.querySelector('a[href="#professor"]').textContent = translations[lang].professor;
+            document.querySelector('a[href="#registration"]').textContent = translations[lang].registration;
+            document.querySelector('a[href="#contact"]').textContent = translations[lang].contact;
         }
         
-        // Fee calculation
-        function getFeeAmount() {
-            const ymjMember = $('input[name="ymj-member"]:checked').val();
-            const participationType = $('input[name="participation-type"]:checked').val();
-            const role = $('input[name="role"]:checked').val();
-            const currency = translations[currentLang]["currency"];
-            
-            if (ymjMember === undefined || participationType === undefined) {
-                return '';
-            }
-            
-            if (participationType === 'passive') {
-                if (ymjMember === 'yes') {
-                    return translations[currentLang]["free"];
-                } else {
-                    return `${currency} 50,000`;
-                }
-            } else {
-                if (ymjMember === 'yes') {
-                    if (role === 'teacher') {
-                        return `${currency} 100,000`;
-                    } else if (role === 'student') {
-                        return `${currency} 500,000`;
-                    }
-                } else {
-                    return `${currency} 650,000`;
-                }
-            }
-            
-            return '';
-        }
+        // Price card selection
+        let selectedPriceCard = null;
+        let selectedPrice = 0;
         
-        // Form interactions
-        $('input[name="ymj-member"], input[name="participation-type"], input[name="role"]').on('change', function() {
-            const ymjMember = $('input[name="ymj-member"]:checked').val();
-            const participationType = $('input[name="participation-type"]:checked').val();
-            
-            // Show/hide role selection
-            if (participationType === 'active') {
-                $('#role-group').show();
-                // Make role required if active participation
-                $('input[name="role"]').attr('required', 'required');
-            } else {
-                $('#role-group').hide();
-                $('input[name="role"]').removeAttr('required');
-            }
-            
-            // Calculate and display fee
-            const feeAmount = getFeeAmount();
-            if (feeAmount) {
-                $('#fee-amount').text(feeAmount);
-                $('#fee-display').addClass('show');
+        document.querySelectorAll('.price-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selected class from all cards
+                document.querySelectorAll('.price-card').forEach(c => c.classList.remove('selected'));
                 
-                // Show payment info if fee is not free
-                if (feeAmount !== translations[currentLang]["free"]) {
-                    $('#payment-info').addClass('show');
-                    $('#date-group').show();
-                    $('#payment-proof-group').show();
-                    $('input[name="date"]').attr('required', 'required');
-                    $('#payment-proof').attr('required', 'required');
+                // Add selected class to clicked card
+                this.classList.add('selected');
+                selectedPriceCard = this;
+                selectedPrice = parseInt(this.getAttribute('data-price'));
+                
+                // Update form values
+                const type = this.getAttribute('data-type');
+                const ymj = this.getAttribute('data-ymj');
+                
+                document.getElementById('participationType').value = type;
+                document.getElementById('ymjStatus').value = ymj;
+                
+                // Show payment info if price > 0
+                if (selectedPrice > 0) {
+                    document.getElementById('paymentInfo').style.display = 'block';
+                    document.getElementById('totalPayment').textContent = `IDR ${selectedPrice.toLocaleString('id-ID')}`;
+                    
+                    // Generate QR Code
+                    generateQRCode();
                 } else {
-                    $('#payment-info').removeClass('show');
-                    $('#date-group').show();
-                    $('#payment-proof-group').hide();
-                    $('input[name="date"]').attr('required', 'required');
-                    $('#payment-proof').removeAttr('required');
+                    document.getElementById('paymentInfo').style.display = 'none';
                 }
-            } else {
-                $('#fee-display').removeClass('show');
-                $('#payment-info').removeClass('show');
-                $('#date-group').hide();
-                $('#payment-proof-group').hide();
-                $('input[name="date"]').removeAttr('required');
-                $('#payment-proof').removeAttr('required');
-            }
+            });
         });
         
-        // Show notification
-        function showNotification(title, message, type) {
-            $('#notification-title').text(title);
-            $('#notification-message').text(message);
-            $('#notification').removeClass('success error').addClass(type);
-            $('#notification').addClass('show');
+        // Update price cards based on form selection
+        document.getElementById('participationType').addEventListener('change', updatePriceCards);
+        document.getElementById('ymjStatus').addEventListener('change', updatePriceCards);
+        
+        function updatePriceCards() {
+            const type = document.getElementById('participationType').value;
+            const ymj = document.getElementById('ymjStatus').value;
             
-            setTimeout(function() {
-                $('#notification').removeClass('show');
-            }, 5000);
+            if (type && ymj) {
+                // Find matching price card
+                document.querySelectorAll('.price-card').forEach(card => {
+                    if (card.getAttribute('data-type') === type && card.getAttribute('data-ymj') === ymj) {
+                        card.click();
+                    }
+                });
+            }
+        }
+        
+        // Generate QR Code
+        function generateQRCode() {
+            const qrContainer = document.getElementById('qrCode');
+            qrContainer.innerHTML = ''; // Clear previous QR code
+            
+            const accountNumber = '5880182244';
+            const accountName = 'Yay Musik Jakarta';
+            const bankName = 'BCA';
+            const amount = selectedPrice;
+            
+            const qrText = `Bank: ${bankName}\nNo. Rekening: ${accountNumber}\n a.n.: ${accountName}\nJumlah: IDR ${amount.toLocaleString('id-ID')}`;
+            
+            new QRCode(qrContainer, {
+                text: qrText,
+                width: 200,
+                height: 200,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
         }
         
         // Form submission
-        $('#registrationForm').on('submit', function(e) {
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Validate dates
-            const datesSelected = $('input[name="date"]:checked').length;
-            if ($('#date-group').is(':visible') && datesSelected === 0) {
-                showNotification(
-                    translations[currentLang]["error-title"],
-                    translations[currentLang]["validation-date"],
-                    'error'
-                );
+            // Validate form
+            if (!selectedPriceCard) {
+                showError('Silakan pilih paket partisipasi terlebih dahulu.');
                 return;
             }
             
-            // Validate payment proof if required
-            const feeAmount = getFeeAmount();
-            if ($('#payment-proof-group').is(':visible') && feeAmount !== translations[currentLang]["free"]) {
-                const paymentProof = $('#payment-proof')[0].files.length;
-                if (paymentProof === 0) {
-                    showNotification(
-                        translations[currentLang]["error-title"],
-                        translations[currentLang]["validation-payment"],
-                        'error'
-                    );
-                    return;
-                }
+            if (selectedPrice > 0 && !document.getElementById('paymentProof').files[0]) {
+                showError('Silakan upload bukti pembayaran.');
+                return;
             }
             
-            // Show loading
-            $('#loading').addClass('show');
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('submitBtn').disabled = true;
             
             // Get form data
-            const formData = new FormData(this);
-            const formValues = {};
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                school: document.getElementById('school').value,
+                level: document.getElementById('level').value,
+                ymjStatus: document.getElementById('ymjStatus').value,
+                participationType: document.getElementById('participationType').value,
+                reservationDate: document.getElementById('reservationDate').value,
+                price: selectedPrice
+            };
             
-            formData.forEach((value, key) => {
-                if (formValues[key]) {
-                    if (!Array.isArray(formValues[key])) {
-                        formValues[key] = [formValues[key]];
-                    }
-                    formValues[key].push(value);
-                } else {
-                    formValues[key] = value;
-                }
-            });
-            
-            // Add fee amount to form data
-            formValues['fee'] = getFeeAmount();
-            
-            // Handle file upload
-            const fileInput = $('#payment-proof')[0];
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                const reader = new FileReader();
+            // Handle payment proof
+            if (selectedPrice > 0) {
+                const paymentProofFile = document.getElementById('paymentProof').files[0];
                 
-                reader.onload = function(e) {
-                    formValues['payment-proof-data'] = e.target.result;
-                    formValues['payment-proof-name'] = file.name;
+                // Convert file to base64
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    formData.paymentProof = event.target.result;
                     
                     // Submit to Google Sheets
-                    submitToGoogleSheets(formValues);
+                    submitToGoogleSheets(formData);
                 };
-                
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(paymentProofFile);
             } else {
-                // Submit to Google Sheets without payment proof
-                submitToGoogleSheets(formValues);
+                // Submit to Google Sheets
+                submitToGoogleSheets(formData);
             }
         });
         
-        // Submit to Google Sheets
-        function submitToGoogleSheets(data) {
-            // Ganti dengan URL Google Apps Script Anda
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwduE31vk3Tf0SAIAD01f6shGuMtYmMt5PT7WzJQXO_l0U-7Hd6F_u1vPcPJHhqSfd3/exec';
+        function submitToGoogleSheets(formData) {
+            // Google Apps Script URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwZgCYKo91JFwaTgbZAoIqlXrRLe5BQoDnBoMwuE5cuB39QxhKozuzDdJjNxsnGTniY_w/exec'; // Replace with your actual Google Apps Script URL
             
-            // Create a simple form submission
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = scriptURL;
-            
-            // Add all data to form
-            Object.keys(data).forEach(key => {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = Array.isArray(data[key]) ? data[key].join(',') : data[key];
-                form.appendChild(input);
+            // Create form data
+            const data = new FormData();
+            Object.keys(formData).forEach(key => {
+                data.append(key, formData[key]);
             });
             
-            // Submit form
-            document.body.appendChild(form);
-            form.submit();
-            
-            // Simulate success for demo (remove this when using real script URL)
-            setTimeout(function() {
-                $('#loading').removeClass('show');
-                showNotification(
-                    translations[currentLang]["success-title"],
-                    translations[currentLang]["success-message"],
-                    'success'
-                );
-                
-                // Redirect to WhatsApp after 2 seconds
-                setTimeout(function() {
-                    redirectToWhatsApp(data);
-                }, 2000);
-            }, 1500);
+            // Submit to Google Sheets
+            fetch(scriptURL, {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === 'success') {
+                    // Show success message
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Redirect to WhatsApp after a short delay
+                    setTimeout(() => {
+                        redirectToWhatsApp(formData);
+                    }, 2000);
+                } else {
+                    showError(result.message || 'Terjadi kesalahan saat mengirim data.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showError('Terjadi kesalahan. Silakan coba lagi.');
+            })
+            .finally(() => {
+                // Hide loading spinner
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+            });
         }
         
-        // Redirect to WhatsApp
-        function redirectToWhatsApp(data) {
-            const phoneNumber = '6285924703474'; // Your WhatsApp number with country code
-            
-            // Format message
+        function redirectToWhatsApp(formData) {
+            // Format message for WhatsApp
             let message = `*MasterClass Registration*\n\n`;
-            message += `*Name:* ${data.name}\n`;
-            message += `*Email:* ${data.email}\n`;
-            message += `*Phone:* ${data.phone}\n`;
-            message += `*School:* ${data.school}\n`;
-            message += `*Education Level:* ${data['education-level']}\n`;
-            message += `*YMJ Member:* ${data['ymj-member']}\n`;
-            message += `*Participation Type:* ${data['participation-type']}\n`;
+            message += `*Name:* ${formData.name}\n`;
+            message += `*Email:* ${formData.email}\n`;
+            message += `*Phone:* ${formData.phone}\n`;
+            message += `*School:* ${formData.school}\n`;
+            message += `*Level:* ${formData.level}\n`;
+            message += `*YMJ Status:* ${formData.ymjStatus}\n`;
+            message += `*Participation Type:* ${formData.participationType}\n`;
+            message += `*Reservation Date:* ${formData.reservationDate}\n`;
+            message += `*Price:* IDR ${formData.price.toLocaleString('id-ID')}\n`;
             
-            if (data.role) {
-                message += `*Role:* ${data.role}\n`;
-            }
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(message);
             
-            message += `*Fee:* ${data.fee}\n`;
-            
-            if (data.date) {
-                if (Array.isArray(data.date)) {
-                    message += `*Dates:* ${data.date.join(', ')} June 2023\n`;
-                } else {
-                    message += `*Date:* ${data.date} June 2023\n`;
-                }
-            }
-            
-            // Add payment proof info if uploaded
-            if (data['payment-proof-name']) {
-                message += `*Payment Proof:* ${data['payment-proof-name']}\n`;
-            }
-            
-            // Create WhatsApp URL
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            // WhatsApp URL
+            const whatsappURL = `https://wa.me/6285924703474?text=${encodedMessage}`;
             
             // Redirect to WhatsApp
             window.open(whatsappURL, '_blank');
+            
+            // Reset form
+            document.getElementById('registrationForm').reset();
+            document.querySelectorAll('.price-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById('paymentInfo').style.display = 'none';
+            selectedPriceCard = null;
+            selectedPrice = 0;
+            
+            // Hide success message after a delay
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
         }
         
-        // Initialize page
-        $(document).ready(function() {
-            translatePage();
+        function showError(message) {
+            document.getElementById('errorText').textContent = message;
+            document.getElementById('errorMessage').style.display = 'block';
+            
+            // Hide error message after a delay
+            setTimeout(() => {
+                document.getElementById('errorMessage').style.display = 'none';
+            }, 5000);
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
 </html>
-
