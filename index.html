@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pendaftaran MasterClass dengan Mr. Guiseppe Fausto Mudugno</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>MasterClass Registration - Mr. Guiseppe Fausto Mudugno</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Google Sheets API -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    
     <style>
         :root {
-            --primary-color: #8B0000;
-            --secondary-color: #D4AF37;
-            --accent-color: #1A1A2E;
+            --primary-color: #8B4513;
+            --secondary-color: #D2B48C;
+            --accent-color: #FFD700;
             --text-color: #333;
-            --light-bg: #F8F8F8;
-            --white: #FFFFFF;
+            --light-bg: #F5F5DC;
+            --dark-bg: #222;
         }
         
         * {
@@ -23,7 +34,7 @@
         }
         
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.6;
@@ -36,1341 +47,977 @@
             padding: 0 20px;
         }
         
-        /* Language Selector */
-        .language-selector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background-color: var(--white);
-            border-radius: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            padding: 5px;
-            display: flex;
-            gap: 5px;
-        }
-        
-        .lang-btn {
-            padding: 8px 15px;
-            border: none;
-            background-color: transparent;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        
-        .lang-btn.active {
-            background-color: var(--primary-color);
-            color: var(--white);
-        }
-        
-        .lang-btn:hover:not(.active) {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        
-        /* Header Styles */
+        /* Header */
         header {
-            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-            color: var(--white);
-            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
         }
         
-        header::before {
-            content: "";
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .language-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn.active {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .professor-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .professor-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .professor-details h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .professor-details p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .event-details {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .event-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .event-details p {
+            margin-bottom: 10px;
+        }
+        
+        /* Registration Form */
+        .registration-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+        
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .fee-display {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .fee-display.show {
+            display: block;
+        }
+        
+        .payment-info {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .payment-info.show {
+            display: block;
+        }
+        
+        .payment-details {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+        
+        .account-info {
+            flex: 1;
+        }
+        
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: #6B3410;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-submit {
+            margin-top: 20px;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+        }
+        
+        /* Music Animation */
+        .music-animation {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://picsum.photos/seed/musicnotes/1200/300.jpg');
-            background-size: cover;
+            pointer-events: none;
+            z-index: -1;
             opacity: 0.1;
-            z-index: 0;
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-        
-        .header-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            animation: fadeInDown 1s ease-out;
-        }
-        
-        .header-content p {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            animation: fadeInUp 1s ease-out;
         }
         
         .music-note {
             position: absolute;
-            font-size: 2rem;
-            color: var(--secondary-color);
-            opacity: 0.3;
-            animation: float 5s infinite ease-in-out;
+            font-size: 30px;
+            animation: float 15s infinite linear;
         }
         
-        .note1 { top: 20%; left: 10%; animation-delay: 0s; }
-        .note2 { top: 60%; left: 80%; animation-delay: 1s; }
-        .note3 { top: 40%; left: 20%; animation-delay: 2s; }
-        .note4 { top: 70%; left: 40%; animation-delay: 3s; }
-        .note5 { top: 30%; left: 70%; animation-delay: 4s; }
-        
-        /* Main Content */
-        main {
-            padding: 3rem 0;
-        }
-        
-        .masterclass-info {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            animation: fadeIn 1s ease-out;
-        }
-        
-        .masterclass-info h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .info-item i {
-            color: var(--secondary-color);
-            margin-right: 1rem;
-            font-size: 1.2rem;
-            margin-top: 0.2rem;
-        }
-        
-        .info-item h3 {
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-            color: var(--accent-color);
-        }
-        
-        .info-item p {
-            font-size: 0.95rem;
-        }
-        
-        /* Fee Structure */
-        .fee-structure {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            animation: fadeIn 1.2s ease-out;
-        }
-        
-        .fee-structure h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        .fee-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1.5rem;
-        }
-        
-        .fee-table th, .fee-table td {
-            padding: 0.8rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .fee-table th {
-            background-color: var(--accent-color);
-            color: var(--white);
-        }
-        
-        .fee-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        .fee-table tr:hover {
-            background-color: #f1f1f1;
-        }
-        
-        /* Payment Info */
-        .payment-info {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            animation: fadeIn 1.4s ease-out;
-        }
-        
-        .payment-info h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        .payment-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-        
-        .bank-info {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .qr-code {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-        }
-        
-        .qr-code img {
-            max-width: 200px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        
-        /* Registration Form */
-        .registration-form {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            animation: fadeIn 1.6s ease-out;
-        }
-        
-        .registration-form h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--secondary-color);
-            outline: none;
-        }
-        
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .form-col {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .radio-group,
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-        
-        .radio-item,
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            margin-right: 1rem;
-        }
-        
-        .radio-item input,
-        .checkbox-item input {
-            margin-right: 0.5rem;
-            width: auto;
-        }
-        
-        .file-upload {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            width: 100%;
-        }
-        
-        .file-upload input[type="file"] {
-            position: absolute;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-        
-        .file-upload-label {
-            display: block;
-            padding: 0.8rem;
-            background-color: #f1f1f1;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
-        
-        .file-upload:hover .file-upload-label {
-            background-color: #e1e1e1;
-        }
-        
-        .file-info {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: var(--white);
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: block;
-            margin: 2rem auto 0;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .submit-btn:active {
-            transform: translateY(1px);
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
         
         /* Footer */
         footer {
-            background: var(--accent-color);
-            color: var(--white);
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
-        }
-        
-        /* Success Message */
-        .success-message {
-            display: none;
-            background-color: #d4edda;
-            color: #155724;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
+            background: var(--dark-bg);
+            color: white;
+            padding: 30px 0;
             text-align: center;
         }
         
-        .error-message {
-            display: none;
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            text-align: center;
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
         
-        /* Loading Spinner */
-        .spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            margin: 0 auto;
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s ease-in-out infinite;
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Price Display */
-        .price-display {
-            background-color: #f8f9fa;
-            border: 2px dashed var(--secondary-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-            text-align: center;
-            display: none;
-        }
-        
-        .price-display.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        .price-display h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .price-display .price {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 15px;
             color: var(--accent-color);
         }
         
-        .price-display .price-note {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.5rem;
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 5px;
+            display: block;
         }
         
-        /* Responsive Design */
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #999;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .notification.error {
+            border-left: 5px solid #F44336;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .header-content h1 {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 28px;
             }
             
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-row {
-                flex-direction: column;
+            .professor-photo {
+                width: 150px;
+                height: 150px;
             }
             
             .payment-details {
                 flex-direction: column;
             }
             
-            .language-selector {
-                top: 10px;
-                right: 10px;
-            }
-            
-            .lang-btn {
-                padding: 6px 10px;
-                font-size: 0.8rem;
+            .footer-content {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Language Selector -->
-    <div class="language-selector">
-        <button class="lang-btn active" data-lang="id">ID</button>
-        <button class="lang-btn" data-lang="zh">中文</button>
-        <button class="lang-btn" data-lang="en">EN</button>
+    <!-- Music Animation Background -->
+    <div class="music-animation">
+        <div class="music-note" style="left: 10%; animation-delay: 0s;">♪</div>
+        <div class="music-note" style="left: 20%; animation-delay: 2s;">♫</div>
+        <div class="music-note" style="left: 30%; animation-delay: 4s;">♬</div>
+        <div class="music-note" style="left: 40%; animation-delay: 6s;">♩</div>
+        <div class="music-note" style="left: 50%; animation-delay: 8s;">♪</div>
+        <div class="music-note" style="left: 60%; animation-delay: 10s;">♫</div>
+        <div class="music-note" style="left: 70%; animation-delay: 12s;">♬</div>
+        <div class="music-note" style="left: 80%; animation-delay: 14s;">♩</div>
+        <div class="music-note" style="left: 90%; animation-delay: 16s;">♪</div>
     </div>
     
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <h1 data-lang-text="title">MasterClass dengan Mr. Guiseppe Fausto Mudugno</h1>
-                <p data-lang-text="subtitle">Director, Conservatorio "Vechi-Tonelli", Modena, Italy</p>
-                <p data-lang-text="organizer">Diselenggarakan oleh: Yayasan Musik Jakarta</p>
+                <div class="logo">Yayasan Musik Jakarta</div>
+                <div class="language-selector">
+                    <button class="language-btn active" data-lang="id">Indonesia</button>
+                    <button class="language-btn" data-lang="en">English</button>
+                    <button class="language-btn" data-lang="zh">中文</button>
+                </div>
             </div>
-            <i class="fas fa-music music-note note1"></i>
-            <i class="fas fa-music music-note note2"></i>
-            <i class="fas fa-music music-note note3"></i>
-            <i class="fas fa-music music-note note4"></i>
-            <i class="fas fa-music music-note note5"></i>
         </div>
     </header>
     
-    <main>
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <!-- Masterclass Information -->
-            <section class="masterclass-info">
-                <h2 data-lang-text="info-title">Informasi MasterClass</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <i class="fas fa-user-tie"></i>
-                        <div>
-                            <h3 data-lang-text="speaker-title">Pembicara</h3>
-                            <p data-lang-text="speaker-name">Mr. Guiseppe Fausto Mudugno</p>
-                            <p data-lang-text="speaker-position">Director, Conservatorio "Vechi-Tonelli", Modena, Italy</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-building"></i>
-                        <div>
-                            <h3 data-lang-text="organizer-title">Penyelenggara</h3>
-                            <p data-lang-text="organizer-name">Yayasan Musik Jakarta</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3 data-lang-text="location-title">Lokasi</h3>
-                            <p data-lang-text="location-name">YMJ BSD Auditorium</p>
-                            <p data-lang-text="location-address">Jl. Letnan Soetopo, BSD</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <h1 data-translate="title">MasterClass Registration</h1>
             
-            <!-- Fee Structure -->
-            <section class="fee-structure">
-                <h2 data-lang-text="fee-title">Struktur Biaya</h2>
-                <table class="fee-table">
-                    <thead>
-                        <tr>
-                            <th data-lang-text="fee-type">Jenis Partisipasi</th>
-                            <th data-lang-text="fee-category">Kategori</th>
-                            <th data-lang-text="fee-price">Biaya</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan="2" data-lang-text="participation-passive">Pasif (Observasi)</td>
-                            <td data-lang-text="category-ymj">Guru & Siswa YMJ</td>
-                            <td data-lang-text="price-free">Gratis</td>
-                        </tr>
-                        <tr>
-                            <td data-lang-text="category-non-ymj">Non-YMJ</td>
-                            <td data-lang-text="price-50000">IDR 50.000</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="3" data-lang-text="participation-active">Aktif</td>
-                            <td data-lang-text="category-teacher-ymj">Guru YMJ</td>
-                            <td data-lang-text="price-100000">IDR 100.000</td>
-                        </tr>
-                        <tr>
-                            <td data-lang-text="category-student-ymj">Siswa YMJ</td>
-                            <td data-lang-text="price-500000">IDR 500.000</td>
-                        </tr>
-                        <tr>
-                            <td data-lang-text="category-non-ymj-active">Non-YMJ</td>
-                            <td data-lang-text="price-650000">IDR 650.000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            <div class="professor-info">
+                <img src="https://picsum.photos/seed/professor/200/200.jpg" alt="Mr. Guiseppe Fausto Mudugno" class="professor-photo">
+                <div class="professor-details">
+                    <h2>Mr. Guiseppe Fausto Mudugno</h2>
+                    <p data-translate="professor-title">Director, Conservatorio "Vechi-Tonelli", Modena, Italy</p>
+                </div>
+            </div>
             
-            <!-- Payment Information -->
-            <section class="payment-info">
-                <h2 data-lang-text="payment-title">Informasi Pembayaran</h2>
-                <div class="payment-details">
-                    <div class="bank-info">
-                        <h3 data-lang-text="bank-details">Detail Rekening</h3>
-                        <p><span data-lang-text="bank-name">Bank:</span> Bank Central Asia (BCA)</p>
-                        <p><span data-lang-text="account-number">No. Rekening:</span> 1234567890</p>
-                        <p><span data-lang-text="account-name">A.n:</span> Yayasan Musik Jakarta</p>
-                        <p><span data-lang-text="bank-code">Kode Bank:</span> 014</p>
-                    </div>
-                    <div class="qr-code">
-                        <h3 data-lang-text="qr-code">QR Code Pembayaran</h3>
-                        <img src="https://picsum.photos/seed/qrcode/200/200.jpg" alt="QR Code Pembayaran">
-                        <p data-lang-text="qr-scan">Scan QR Code untuk pembayaran mudah</p>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Registration Form -->
-            <section class="registration-form">
-                <h2 data-lang-text="form-title">Formulir Pendaftaran</h2>
-                <div class="success-message" id="successMessage">
-                    <i class="fas fa-check-circle"></i> <span data-lang-text="success-message">Pendaftaran Anda berhasil! Anda akan diarahkan ke WhatsApp.</span>
-                </div>
-                <div class="error-message" id="errorMessage">
-                    <i class="fas fa-exclamation-circle"></i> <span data-lang-text="error-message">Terjadi kesalahan. Silakan coba lagi.</span>
-                </div>
-                <div class="spinner" id="loadingSpinner"></div>
-                
-                <form id="registrationForm">
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="name" data-lang-text="form-name">Nama Lengkap *</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="email" data-lang-text="form-email">Email *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="phone" data-lang-text="form-phone">No. HP *</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="school" data-lang-text="form-school">Asal Sekolah/Institusi *</label>
-                                <input type="text" id="school" name="school" required>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="schoolLevel" data-lang-text="form-school-level">Tingkat Sekolah *</label>
-                                <select id="schoolLevel" name="schoolLevel" required>
-                                    <option value="" data-lang-text="form-select-level">Pilih Tingkat</option>
-                                    <option value="SD" data-lang-text="level-sd">SD</option>
-                                    <option value="SMP" data-lang-text="level-smp">SMP</option>
-                                    <option value="SMA" data-lang-text="level-sma">SMA</option>
-                                    <option value="Mahasiswa" data-lang-text="level-university">Mahasiswa</option>
-                                    <option value="Profesional" data-lang-text="level-professional">Profesional</option>
-                                    <option value="Lainnya" data-lang-text="level-other">Lainnya</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label data-lang-text="form-ymj-member">Apakah Anda Anggota YMJ? *</label>
-                                <div class="radio-group">
-                                    <div class="radio-item">
-                                        <input type="radio" id="ymjYes" name="isYmjMember" value="Yes" required>
-                                        <label for="ymjYes" data-lang-text="form-yes">Ya</label>
-                                    </div>
-                                    <div class="radio-item">
-                                        <input type="radio" id="ymjNo" name="isYmjMember" value="No" required>
-                                        <label for="ymjNo" data-lang-text="form-no">Tidak</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label data-lang-text="form-participation">Jenis Partisipasi *</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="passive" name="participationType" value="Passive" required>
-                                <label for="passive" data-lang-text="form-passive">Pasif (Observasi)</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="active" name="participationType" value="Active" required>
-                                <label for="active" data-lang-text="form-active">Aktif</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label data-lang-text="form-category">Kategori *</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="teacher" name="category" value="Teacher" required>
-                                <label for="teacher" data-lang-text="form-teacher">Guru</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="student" name="category" value="Student" required>
-                                <label for="student" data-lang-text="form-student">Siswa</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="general" name="category" value="General" required>
-                                <label for="general" data-lang-text="form-general">Umum</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Price Display -->
-                    <div class="price-display" id="priceDisplay">
-                        <h3 data-lang-text="price-display-title">Biaya Pendaftaran Anda:</h3>
-                        <div class="price" id="priceValue">-</div>
-                        <div class="price-note" id="priceNote">-</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label data-lang-text="form-dates">Pilih Tanggal Reservasi MasterClass *</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="date23" name="reservationDates" value="23">
-                                <label for="date23">23 Juni 2023</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="date24" name="reservationDates" value="24">
-                                <label for="date24">24 Juni 2023</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="paymentProof" data-lang-text="form-payment-proof">Bukti Pembayaran *</label>
-                        <div class="file-upload">
-                            <input type="file" id="paymentProof" name="paymentProof" accept="image/*" required>
-                            <label for="paymentProof" class="file-upload-label">
-                                <i class="fas fa-cloud-upload-alt"></i> <span data-lang-text="form-upload">Pilih File Bukti Pembayaran</span>
-                            </label>
-                        </div>
-                        <div class="file-info" id="fileInfo" data-lang-text="form-no-file">Belum ada file yang dipilih</div>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" data-lang-text="form-submit">Kirim Formulir</button>
-                </form>
-            </section>
+            <div class="event-details">
+                <h3 data-translate="event-details">Event Details</h3>
+                <p><strong data-translate="organized-by">Organized by:</strong> Yayasan Musik Jakarta</p>
+                <p><strong data-translate="venue">Venue:</strong> YMJ BSD Auditorium Jl. Letnan Soetopo, BSD</p>
+                <p><strong data-translate="dates">Dates:</strong> 23-24 June 2023</p>
+            </div>
         </div>
-    </main>
+    </section>
     
+    <!-- Registration Form -->
+    <section class="registration-form">
+        <div class="container">
+            <h2 data-translate="form-title">Registration Form</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name" data-translate="name-label">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" data-translate="email-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" data-translate="phone-label">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="school" data-translate="school-label">School</label>
+                    <input type="text" id="school" name="school" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="education-level" data-translate="education-label">Education Level</label>
+                    <select id="education-level" name="education-level" class="form-control" required>
+                        <option value="" disabled selected data-translate="select-education">Select Education Level</option>
+                        <option value="elementary" data-translate="elementary">Elementary School</option>
+                        <option value="junior-high" data-translate="junior-high">Junior High School</option>
+                        <option value="senior-high" data-translate="senior-high">Senior High School</option>
+                        <option value="university" data-translate="university">University</option>
+                        <option value="professional" data-translate="professional">Professional</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label data-translate="ymj-member-label">Are you a YMJ member?</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="ymj-yes" name="ymj-member" value="yes" required>
+                            <label for="ymj-yes" data-translate="yes">Yes</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="ymj-no" name="ymj-member" value="no" required>
+                            <label for="ymj-no" data-translate="no">No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label data-translate="participation-label">Participation Type</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="passive" name="participation-type" value="passive" required>
+                            <label for="passive" data-translate="passive">Passive (Observation)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="active" name="participation-type" value="active" required>
+                            <label for="active" data-translate="active">Active</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="role-group" style="display: none;">
+                    <label data-translate="role-label">Role</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="teacher" name="role" value="teacher">
+                            <label for="teacher" data-translate="teacher">Teacher</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="student" name="role" value="student">
+                            <label for="student" data-translate="student">Student</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fee-display" id="fee-display">
+                    <p data-translate="fee-info">Registration Fee:</p>
+                    <p id="fee-amount" style="font-size: 24px; font-weight: 600; color: var(--primary-color);"></p>
+                </div>
+                
+                <div class="payment-info" id="payment-info">
+                    <h3 data-translate="payment-info-title">Payment Information</h3>
+                    <div class="payment-details">
+                        <div class="qr-code">
+                            <i class="fas fa-qrcode" style="font-size: 100px; color: #ddd;"></i>
+                        </div>
+                        <div class="account-info">
+                            <p><strong data-translate="bank-name">Bank:</strong> Bank Central Asia (BCA)</p>
+                            <p><strong data-translate="account-name">Account Name:</strong> Yayasan Musik Jakarta</p>
+                            <p><strong data-translate="account-number">Account Number:</strong> 1234567890</p>
+                            <p data-translate="payment-instruction">Please transfer the registration fee to the account above and upload the payment proof below.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="date-group" style="display: none;">
+                    <label data-translate="date-label">Select MasterClass Date</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="date-23" name="date" value="23">
+                            <label for="date-23">23 June 2023</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="date-24" name="date" value="24">
+                            <label for="date-24">24 June 2023</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="payment-proof-group" style="display: none;">
+                    <label for="payment-proof" data-translate="payment-proof-label">Upload Payment Proof</label>
+                    <input type="file" id="payment-proof" name="payment-proof" class="form-control" accept="image/*">
+                </div>
+                
+                <button type="submit" class="btn btn-submit" data-translate="submit-btn">Submit Registration</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p data-lang-text="footer-copyright">&copy; 2023 Yayasan Musik Jakarta. Hak Cipta Dilindungi.</p>
-            <p data-lang-text="footer-contact">Untuk informasi lebih lanjut, hubungi: info@ymj.or.id | +62 21 1234 5678</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-translate="contact-us">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Letnan Soetopo, BSD</p>
+                    <p><i class="fas fa-phone"></i> +62 21 1234567</p>
+                    <p><i class="fas fa-envelope"></i> info@ymj.org</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-translate="quick-links">Quick Links</h3>
+                    <a href="#" data-translate="about-us">About Us</a>
+                    <a href="#" data-translate="programs">Programs</a>
+                    <a href="#" data-translate="events">Events</a>
+                    <a href="#" data-translate="gallery">Gallery</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-translate="follow-us">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Yayasan Musik Jakarta. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-
+    
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <p id="notification-message"></p>
+    </div>
+    
     <script>
-        // Language translations
+        // Translation data
         const translations = {
             id: {
-                "title": "MasterClass dengan Mr. Guiseppe Fausto Mudugno",
-                "subtitle": "Director, Conservatorio \"Vechi-Tonelli\", Modena, Italy",
-                "organizer": "Diselenggarakan oleh: Yayasan Musik Jakarta",
-                "info-title": "Informasi MasterClass",
-                "speaker-title": "Pembicara",
-                "speaker-name": "Mr. Guiseppe Fausto Mudugno",
-                "speaker-position": "Director, Conservatorio \"Vechi-Tonelli\", Modena, Italy",
-                "organizer-title": "Penyelenggara",
-                "organizer-name": "Yayasan Musik Jakarta",
-                "location-title": "Lokasi",
-                "location-name": "YMJ BSD Auditorium",
-                "location-address": "Jl. Letnan Soetopo, BSD",
-                "fee-title": "Struktur Biaya",
-                "fee-type": "Jenis Partisipasi",
-                "fee-category": "Kategori",
-                "fee-price": "Biaya",
-                "participation-passive": "Pasif (Observasi)",
-                "participation-active": "Aktif",
-                "category-ymj": "Guru & Siswa YMJ",
-                "category-non-ymj": "Non-YMJ",
-                "category-teacher-ymj": "Guru YMJ",
-                "category-student-ymj": "Siswa YMJ",
-                "category-non-ymj-active": "Non-YMJ",
-                "price-free": "Gratis",
-                "price-50000": "IDR 50.000",
-                "price-100000": "IDR 100.000",
-                "price-500000": "IDR 500.000",
-                "price-650000": "IDR 650.000",
-                "payment-title": "Informasi Pembayaran",
-                "bank-details": "Detail Rekening",
-                "bank-name": "Bank:",
-                "account-number": "No. Rekening:",
-                "account-name": "A.n:",
-                "bank-code": "Kode Bank:",
-                "qr-code": "QR Code Pembayaran",
-                "qr-scan": "Scan QR Code untuk pembayaran mudah",
+                "title": "Pendaftaran MasterClass",
+                "professor-title": "Direktur, Conservatorio \"Vechi-Tonelli\", Modena, Italia",
+                "event-details": "Detail Acara",
+                "organized-by": "Diselenggarakan oleh:",
+                "venue": "Tempat:",
+                "dates": "Tanggal:",
                 "form-title": "Formulir Pendaftaran",
-                "success-message": "Pendaftaran Anda berhasil! Anda akan diarahkan ke WhatsApp.",
-                "error-message": "Terjadi kesalahan. Silakan coba lagi.",
-                "form-name": "Nama Lengkap *",
-                "form-email": "Email *",
-                "form-phone": "No. HP *",
-                "form-school": "Asal Sekolah/Institusi *",
-                "form-school-level": "Tingkat Sekolah *",
-                "form-select-level": "Pilih Tingkat",
-                "level-sd": "SD",
-                "level-smp": "SMP",
-                "level-sma": "SMA",
-                "level-university": "Mahasiswa",
-                "level-professional": "Profesional",
-                "level-other": "Lainnya",
-                "form-ymj-member": "Apakah Anda Anggota YMJ? *",
-                "form-yes": "Ya",
-                "form-no": "Tidak",
-                "form-participation": "Jenis Partisipasi *",
-                "form-passive": "Pasif (Observasi)",
-                "form-active": "Aktif",
-                "form-category": "Kategori *",
-                "form-teacher": "Guru",
-                "form-student": "Siswa",
-                "form-general": "Umum",
-                "price-display-title": "Biaya Pendaftaran Anda:",
-                "form-dates": "Pilih Tanggal Reservasi MasterClass *",
-                "form-payment-proof": "Bukti Pembayaran *",
-                "form-upload": "Pilih File Bukti Pembayaran",
-                "form-no-file": "Belum ada file yang dipilih",
-                "form-submit": "Kirim Formulir",
-                "footer-copyright": "&copy; 2023 Yayasan Musik Jakarta. Hak Cipta Dilindungi.",
-                "footer-contact": "Untuk informasi lebih lanjut, hubungi: info@ymj.or.id | +62 21 1234 5678",
-                "alert-date": "Silakan pilih setidaknya satu tanggal untuk reservasi MasterClass.",
-                "whatsapp-message": "*FORMULIR PENDAFTARAN MASTERCLASS*\n\n*Nama:* {name}\n*Email:* {email}\n*No. HP:* {phone}\n*Asal Sekolah/Institusi:* {school}\n*Tingkat Sekolah:* {schoolLevel}\n*Anggota YMJ:* {isYmjMember}\n*Jenis Partisipasi:* {participationType}\n*Kategori:* {category}\n*Biaya:* {price}\n*Tanggal Reservasi:* {reservationDates}\n\nTerima kasih telah mendaftar MasterClass dengan Mr. Guiseppe Fausto Mudugno."
-            },
-            zh: {
-                "title": "与吉塞佩·福斯托·穆杜尼奥先生的大师课",
-                "subtitle": "意大利摩德纳"韦基-托内利"音乐学院院长",
-                "organizer": "主办方：雅加达音乐基金会",
-                "info-title": "大师课信息",
-                "speaker-title": "主讲人",
-                "speaker-name": "吉塞佩·福斯托·穆杜尼奥先生",
-                "speaker-position": "意大利摩德纳"韦基-托内利"音乐学院院长",
-                "organizer-title": "主办方",
-                "organizer-name": "雅加达音乐基金会",
-                "location-title": "地点",
-                "location-name": "YMJ BSD礼堂",
-                "location-address": "BSD Letnan Soetopo街",
-                "fee-title": "费用结构",
-                "fee-type": "参与类型",
-                "fee-category": "类别",
-                "fee-price": "费用",
-                "participation-passive": "被动（观察）",
-                "participation-active": "主动",
-                "category-ymj": "YMJ教师和学生",
-                "category-non-ymj": "非YMJ",
-                "category-teacher-ymj": "YMJ教师",
-                "category-student-ymj": "YMJ学生",
-                "category-non-ymj-active": "非YMJ",
-                "price-free": "免费",
-                "price-50000": "印尼盾 50,000",
-                "price-100000": "印尼盾 100,000",
-                "price-500000": "印尼盾 500,000",
-                "price-650000": "印尼盾 650,000",
-                "payment-title": "支付信息",
-                "bank-details": "账户详情",
-                "bank-name": "银行:",
-                "account-number": "账号:",
-                "account-name": "账户名:",
-                "bank-code": "银行代码:",
-                "qr-code": "支付二维码",
-                "qr-scan": "扫描二维码轻松支付",
-                "form-title": "报名表",
-                "success-message": "您的报名成功！您将被重定向到WhatsApp。",
-                "error-message": "发生错误。请再试一次。",
-                "form-name": "全名 *",
-                "form-email": "电子邮件 *",
-                "form-phone": "手机号码 *",
-                "form-school": "学校/机构 *",
-                "form-school-level": "学校级别 *",
-                "form-select-level": "选择级别",
-                "level-sd": "小学",
-                "level-smp": "初中",
-                "level-sma": "高中",
-                "level-university": "大学生",
-                "level-professional": "专业人士",
-                "level-other": "其他",
-                "form-ymj-member": "您是YMJ会员吗？ *",
-                "form-yes": "是",
-                "form-no": "否",
-                "form-participation": "参与类型 *",
-                "form-passive": "被动（观察）",
-                "form-active": "主动",
-                "form-category": "类别 *",
-                "form-teacher": "教师",
-                "form-student": "学生",
-                "form-general": "普通",
-                "price-display-title": "您的注册费用：",
-                "form-dates": "选择大师课预订日期 *",
-                "form-payment-proof": "付款凭证 *",
-                "form-upload": "选择付款凭证文件",
-                "form-no-file": "尚未选择文件",
-                "form-submit": "提交表格",
-                "footer-copyright": "&copy; 2023 雅加达音乐基金会。版权所有。",
-                "footer-contact": "更多信息，请联系：info@ymj.or.id | +62 21 1234 5678",
-                "alert-date": "请至少选择一个大师课预订日期。",
-                "whatsapp-message": "*大师课报名表*\n\n*姓名：* {name}\n*电子邮件：* {email}\n*手机号码：* {phone}\n*学校/机构：* {school}\n*学校级别：* {schoolLevel}\n*YMJ会员：* {isYmjMember}\n*参与类型：* {participationType}\n*类别：* {category}\n*费用：* {price}\n*预订日期：* {reservationDates}\n\n感谢您报名吉塞佩·福斯托·穆杜尼奥先生的大师课。"
+                "name-label": "Nama Lengkap",
+                "email-label": "Email",
+                "phone-label": "Nomor HP",
+                "school-label": "Asal Sekolah",
+                "education-label": "Tingkat Pendidikan",
+                "select-education": "Pilih Tingkat Pendidikan",
+                "elementary": "SD",
+                "junior-high": "SMP",
+                "senior-high": "SMA",
+                "university": "Universitas",
+                "professional": "Profesional",
+                "ymj-member-label": "Apakah Anda anggota YMJ?",
+                "yes": "Ya",
+                "no": "Tidak",
+                "participation-label": "Jenis Partisipasi",
+                "passive": "Pasif (Observasi)",
+                "active": "Aktif",
+                "role-label": "Peran",
+                "teacher": "Guru",
+                "student": "Siswa",
+                "fee-info": "Biaya Pendaftaran:",
+                "payment-info-title": "Informasi Pembayaran",
+                "bank-name": "Bank:",
+                "account-name": "Nama Akun:",
+                "account-number": "Nomor Akun:",
+                "payment-instruction": "Silakan transfer biaya pendaftaran ke akun di atas dan unggah bukti pembayaran di bawah ini.",
+                "date-label": "Pilih Tanggal MasterClass",
+                "payment-proof-label": "Unggah Bukti Pembayaran",
+                "submit-btn": "Kirim Pendaftaran",
+                "contact-us": "Hubungi Kami",
+                "quick-links": "Tautan Cepat",
+                "follow-us": "Ikuti Kami",
+                "about-us": "Tentang Kami",
+                "programs": "Program",
+                "events": "Acara",
+                "gallery": "Galeri",
+                "free": "Gratis",
+                "currency": "IDR",
+                "passive-ymj": "Peserta Pasif (Anggota YMJ)",
+                "passive-non-ymj": "Peserta Pasif (Non-Anggota YMJ)",
+                "active-ymj-teacher": "Peserta Aktif (Guru YMJ)",
+                "active-ymj-student": "Peserta Aktif (Siswa YMJ)",
+                "active-non-ymj": "Peserta Aktif (Non-Anggota YMJ)"
             },
             en: {
-                "title": "MasterClass with Mr. Guiseppe Fausto Mudugno",
-                "subtitle": "Director, Conservatorio \"Vechi-Tonelli\", Modena, Italy",
-                "organizer": "Organized by: Jakarta Music Foundation",
-                "info-title": "MasterClass Information",
-                "speaker-title": "Speaker",
-                "speaker-name": "Mr. Guiseppe Fausto Mudugno",
-                "speaker-position": "Director, Conservatorio \"Vechi-Tonelli\", Modena, Italy",
-                "organizer-title": "Organizer",
-                "organizer-name": "Jakarta Music Foundation",
-                "location-title": "Location",
-                "location-name": "YMJ BSD Auditorium",
-                "location-address": "Jl. Letnan Soetopo, BSD",
-                "fee-title": "Fee Structure",
-                "fee-type": "Participation Type",
-                "fee-category": "Category",
-                "fee-price": "Fee",
-                "participation-passive": "Passive (Observation)",
-                "participation-active": "Active",
-                "category-ymj": "YMJ Teachers & Students",
-                "category-non-ymj": "Non-YMJ",
-                "category-teacher-ymj": "YMJ Teacher",
-                "category-student-ymj": "YMJ Student",
-                "category-non-ymj-active": "Non-YMJ",
-                "price-free": "Free",
-                "price-50000": "IDR 50,000",
-                "price-100000": "IDR 100,000",
-                "price-500000": "IDR 500,000",
-                "price-650000": "IDR 650,000",
-                "payment-title": "Payment Information",
-                "bank-details": "Account Details",
-                "bank-name": "Bank:",
-                "account-number": "Account No.:",
-                "account-name": "Account Name:",
-                "bank-code": "Bank Code:",
-                "qr-code": "Payment QR Code",
-                "qr-scan": "Scan QR Code for easy payment",
+                "title": "MasterClass Registration",
+                "professor-title": "Director, Conservatorio \"Vechi-Tonelli\", Modena, Italy",
+                "event-details": "Event Details",
+                "organized-by": "Organized by:",
+                "venue": "Venue:",
+                "dates": "Dates:",
                 "form-title": "Registration Form",
-                "success-message": "Your registration is successful! You will be redirected to WhatsApp.",
-                "error-message": "An error occurred. Please try again.",
-                "form-name": "Full Name *",
-                "form-email": "Email *",
-                "form-phone": "Phone Number *",
-                "form-school": "School/Institution *",
-                "form-school-level": "School Level *",
-                "form-select-level": "Select Level",
-                "level-sd": "Elementary",
-                "level-smp": "Junior High",
-                "level-sma": "Senior High",
-                "level-university": "University Student",
-                "level-professional": "Professional",
-                "level-other": "Other",
-                "form-ymj-member": "Are you a YMJ member? *",
-                "form-yes": "Yes",
-                "form-no": "No",
-                "form-participation": "Participation Type *",
-                "form-passive": "Passive (Observation)",
-                "form-active": "Active",
-                "form-category": "Category *",
-                "form-teacher": "Teacher",
-                "form-student": "Student",
-                "form-general": "General",
-                "price-display-title": "Your Registration Fee:",
-                "form-dates": "Select MasterClass Reservation Dates *",
-                "form-payment-proof": "Payment Proof *",
-                "form-upload": "Select Payment Proof File",
-                "form-no-file": "No file selected",
-                "form-submit": "Submit Form",
-                "footer-copyright": "&copy; 2023 Jakarta Music Foundation. All Rights Reserved.",
-                "footer-contact": "For more information, contact: info@ymj.or.id | +62 21 1234 5678",
-                "alert-date": "Please select at least one date for MasterClass reservation.",
-                "whatsapp-message": "*MASTERCLASS REGISTRATION FORM*\n\n*Name:* {name}\n*Email:* {email}\n*Phone Number:* {phone}\n*School/Institution:* {school}\n*School Level:* {schoolLevel}\n*YMJ Member:* {isYmjMember}\n*Participation Type:* {participationType}\n*Category:* {category}\n*Fee:* {price}\n*Reservation Dates:* {reservationDates}\n\nThank you for registering for the MasterClass with Mr. Guiseppe Fausto Mudugno."
+                "name-label": "Full Name",
+                "email-label": "Email",
+                "phone-label": "Phone Number",
+                "school-label": "School",
+                "education-label": "Education Level",
+                "select-education": "Select Education Level",
+                "elementary": "Elementary School",
+                "junior-high": "Junior High School",
+                "senior-high": "Senior High School",
+                "university": "University",
+                "professional": "Professional",
+                "ymj-member-label": "Are you a YMJ member?",
+                "yes": "Yes",
+                "no": "No",
+                "participation-label": "Participation Type",
+                "passive": "Passive (Observation)",
+                "active": "Active",
+                "role-label": "Role",
+                "teacher": "Teacher",
+                "student": "Student",
+                "fee-info": "Registration Fee:",
+                "payment-info-title": "Payment Information",
+                "bank-name": "Bank:",
+                "account-name": "Account Name:",
+                "account-number": "Account Number:",
+                "payment-instruction": "Please transfer the registration fee to the account above and upload the payment proof below.",
+                "date-label": "Select MasterClass Date",
+                "payment-proof-label": "Upload Payment Proof",
+                "submit-btn": "Submit Registration",
+                "contact-us": "Contact Us",
+                "quick-links": "Quick Links",
+                "follow-us": "Follow Us",
+                "about-us": "About Us",
+                "programs": "Programs",
+                "events": "Events",
+                "gallery": "Gallery",
+                "free": "Free",
+                "currency": "IDR",
+                "passive-ymj": "Passive Participant (YMJ Member)",
+                "passive-non-ymj": "Passive Participant (Non-YMJ Member)",
+                "active-ymj-teacher": "Active Participant (YMJ Teacher)",
+                "active-ymj-student": "Active Participant (YMJ Student)",
+                "active-non-ymj": "Active Participant (Non-YMJ Member)"
+            },
+            zh: {
+                "title": "大师课注册",
+                "professor-title": "意大利摩德纳\"Vechi-Tonelli\"音乐学院院长",
+                "event-details": "活动详情",
+                "organized-by": "主办方:",
+                "venue": "地点:",
+                "dates": "日期:",
+                "form-title": "注册表格",
+                "name-label": "全名",
+                "email-label": "电子邮件",
+                "phone-label": "电话号码",
+                "school-label": "学校",
+                "education-label": "教育水平",
+                "select-education": "选择教育水平",
+                "elementary": "小学",
+                "junior-high": "初中",
+                "senior-high": "高中",
+                "university": "大学",
+                "professional": "专业",
+                "ymj-member-label": "您是YMJ会员吗?",
+                "yes": "是",
+                "no": "否",
+                "participation-label": "参与类型",
+                "passive": "被动（观察）",
+                "active": "主动",
+                "role-label": "角色",
+                "teacher": "教师",
+                "student": "学生",
+                "fee-info": "注册费:",
+                "payment-info-title": "付款信息",
+                "bank-name": "银行:",
+                "account-name": "账户名称:",
+                "account-number": "账户号码:",
+                "payment-instruction": "请将注册费转账到上述账户，并在下方上传付款证明。",
+                "date-label": "选择大师课日期",
+                "payment-proof-label": "上传付款证明",
+                "submit-btn": "提交注册",
+                "contact-us": "联系我们",
+                "quick-links": "快速链接",
+                "follow-us": "关注我们",
+                "about-us": "关于我们",
+                "programs": "项目",
+                "events": "活动",
+                "gallery": "画廊",
+                "free": "免费",
+                "currency": "印尼盾",
+                "passive-ymj": "被动参与者（YMJ会员）",
+                "passive-non-ymj": "被动参与者（非YMJ会员）",
+                "active-ymj-teacher": "主动参与者（YMJ教师）",
+                "active-ymj-student": "主动参与者（YMJ学生）",
+                "active-non-ymj": "主动参与者（非YMJ会员）"
             }
         };
         
         // Current language
         let currentLang = 'id';
         
-        // Price data structure
-        const priceData = {
-            'Passive': {
-                'Yes': {
-                    'Teacher': translations.id['price-free'],
-                    'Student': translations.id['price-free'],
-                    'General': translations.id['price-50000']
-                },
-                'No': {
-                    'Teacher': translations.id['price-50000'],
-                    'Student': translations.id['price-50000'],
-                    'General': translations.id['price-50000']
-                }
-            },
-            'Active': {
-                'Yes': {
-                    'Teacher': translations.id['price-100000'],
-                    'Student': translations.id['price-500000'],
-                    'General': translations.id['price-650000']
-                },
-                'No': {
-                    'Teacher': translations.id['price-650000'],
-                    'Student': translations.id['price-650000'],
-                    'General': translations.id['price-650000']
-                }
-            }
-        };
-        
-        // Language selector functionality
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Update active button
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Update current language
-                currentLang = this.dataset.lang;
-                
-                // Update page language
-                updatePageLanguage(currentLang);
-                
-                // Update price data
-                updatePriceData(currentLang);
-                
-                // Update price display if visible
-                if (document.getElementById('priceDisplay').classList.contains('active')) {
-                    updatePriceDisplay();
-                }
-            });
+        // Language selector
+        $('.language-btn').on('click', function() {
+            $('.language-btn').removeClass('active');
+            $(this).addClass('active');
+            currentLang = $(this).data('lang');
+            translatePage();
         });
         
-        // Function to update page language
-        function updatePageLanguage(lang) {
-            document.querySelectorAll('[data-lang-text]').forEach(element => {
-                const key = element.getAttribute('data-lang-text');
-                if (translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
+        // Translate page
+        function translatePage() {
+            $('[data-translate]').each(function() {
+                const key = $(this).data('translate');
+                $(this).text(translations[currentLang][key]);
             });
             
-            // Update form select options
-            const schoolLevelSelect = document.getElementById('schoolLevel');
-            if (schoolLevelSelect) {
-                const options = schoolLevelSelect.querySelectorAll('option');
-                options[0].textContent = translations[lang]['form-select-level'];
-                options[1].textContent = translations[lang]['level-sd'];
-                options[2].textContent = translations[lang]['level-smp'];
-                options[3].textContent = translations[lang]['level-sma'];
-                options[4].textContent = translations[lang]['level-university'];
-                options[5].textContent = translations[lang]['level-professional'];
-                options[6].textContent = translations[lang]['level-other'];
+            // Update currency symbol
+            $('#fee-amount').text(getFeeAmount());
+        }
+        
+        // Fee calculation
+        function getFeeAmount() {
+            const ymjMember = $('input[name="ymj-member"]:checked').val();
+            const participationType = $('input[name="participation-type"]:checked').val();
+            const role = $('input[name="role"]:checked').val();
+            const currency = translations[currentLang]["currency"];
+            
+            if (ymjMember === undefined || participationType === undefined) {
+                return '';
             }
             
-            // Update date labels
-            const date23Label = document.querySelector('label[for="date23"]');
-            const date24Label = document.querySelector('label[for="date24"]');
-            if (date23Label) date23Label.textContent = lang === 'zh' ? '2023年6月23日' : (lang === 'en' ? 'June 23, 2023' : '23 Juni 2023');
-            if (date24Label) date24Label.textContent = lang === 'zh' ? '2023年6月24日' : (lang === 'en' ? 'June 24, 2023' : '24 Juni 2023');
-            
-            // Update html lang attribute
-            document.documentElement.lang = lang;
-            
-            // Update page title
-            document.title = translations[lang]['title'];
-        }
-        
-        // Function to update price data based on language
-        function updatePriceData(lang) {
-            priceData = {
-                'Passive': {
-                    'Yes': {
-                        'Teacher': translations[lang]['price-free'],
-                        'Student': translations[lang]['price-free'],
-                        'General': translations[lang]['price-50000']
-                    },
-                    'No': {
-                        'Teacher': translations[lang]['price-50000'],
-                        'Student': translations[lang]['price-50000'],
-                        'General': translations[lang]['price-50000']
-                    }
-                },
-                'Active': {
-                    'Yes': {
-                        'Teacher': translations[lang]['price-100000'],
-                        'Student': translations[lang]['price-500000'],
-                        'General': translations[lang]['price-650000']
-                    },
-                    'No': {
-                        'Teacher': translations[lang]['price-650000'],
-                        'Student': translations[lang]['price-650000'],
-                        'General': translations[lang]['price-650000']
-                    }
+            if (participationType === 'passive') {
+                if (ymjMember === 'yes') {
+                    return translations[currentLang]["free"];
+                } else {
+                    return `${currency} 50,000`;
                 }
-            };
+            } else {
+                if (ymjMember === 'yes') {
+                    if (role === 'teacher') {
+                        return `${currency} 100,000`;
+                    } else if (role === 'student') {
+                        return `${currency} 500,000`;
+                    }
+                } else {
+                    return `${currency} 650,000`;
+                }
+            }
+            
+            return '';
         }
         
-        // File upload handling
-        const fileInput = document.getElementById('paymentProof');
-        const fileInfo = document.getElementById('fileInfo');
-        
-        fileInput.addEventListener('change', function() {
-            if (this.files && this.files.length > 0) {
-                fileInfo.textContent = `${translations[currentLang]['form-upload']}: ${this.files[0].name} (${(this.files[0].size / 1024).toFixed(2)} KB)`;
+        // Form interactions
+        $('input[name="ymj-member"], input[name="participation-type"], input[name="role"]').on('change', function() {
+            const ymjMember = $('input[name="ymj-member"]:checked').val();
+            const participationType = $('input[name="participation-type"]:checked').val();
+            
+            // Show/hide role selection
+            if (participationType === 'active') {
+                $('#role-group').show();
             } else {
-                fileInfo.textContent = translations[currentLang]['form-no-file'];
+                $('#role-group').hide();
+            }
+            
+            // Calculate and display fee
+            const feeAmount = getFeeAmount();
+            if (feeAmount) {
+                $('#fee-amount').text(feeAmount);
+                $('#fee-display').addClass('show');
+                
+                // Show payment info if fee is not free
+                if (feeAmount !== translations[currentLang]["free"]) {
+                    $('#payment-info').addClass('show');
+                    $('#date-group').show();
+                    $('#payment-proof-group').show();
+                } else {
+                    $('#payment-info').removeClass('show');
+                    $('#date-group').show();
+                    $('#payment-proof-group').hide();
+                }
+            } else {
+                $('#fee-display').removeClass('show');
+                $('#payment-info').removeClass('show');
+                $('#date-group').hide();
+                $('#payment-proof-group').hide();
             }
         });
         
-        // Price display handling
-        const priceDisplay = document.getElementById('priceDisplay');
-        const priceValue = document.getElementById('priceValue');
-        const priceNote = document.getElementById('priceNote');
-        
-        // Function to update price display
-        function updatePriceDisplay() {
-            const participationType = document.querySelector('input[name="participationType"]:checked');
-            const isYmjMember = document.querySelector('input[name="isYmjMember"]:checked');
-            const category = document.querySelector('input[name="category"]:checked');
-            
-            if (participationType && isYmjMember && category) {
-                const price = priceData[participationType.value][isYmjMember.value][category.value];
-                priceValue.textContent = price;
-                
-                // Set price note based on selection
-                let note = '';
-                if (participationType.value === 'Passive') {
-                    note = currentLang === 'zh' ? '被动参与（观察）' : (currentLang === 'en' ? 'Passive Participation (Observation)' : 'Partisipasi Pasif (Observasi)');
-                } else {
-                    note = currentLang === 'zh' ? '主动参与' : (currentLang === 'en' ? 'Active Participation' : 'Partisipasi Aktif');
-                }
-                
-                if (isYmjMember.value === 'Yes') {
-                    note += currentLang === 'zh' ? ' - YMJ会员' : (currentLang === 'en' ? ' - YMJ Member' : ' - Anggota YMJ');
-                } else {
-                    note += currentLang === 'zh' ? ' - 非YMJ' : (currentLang === 'en' ? ' - Non-YMJ' : ' - Non-YMJ');
-                }
-                
-                if (category.value === 'Teacher') {
-                    note += currentLang === 'zh' ? ' - 教师类别' : (currentLang === 'en' ? ' - Teacher Category' : ' - Kategori Guru');
-                } else if (category.value === 'Student') {
-                    note += currentLang === 'zh' ? ' - 学生类别' : (currentLang === 'en' ? ' - Student Category' : ' - Kategori Siswa');
-                } else {
-                    note += currentLang === 'zh' ? ' - 普通类别' : (currentLang === 'en' ? ' - General Category' : ' - Kategori Umum');
-                }
-                
-                priceNote.textContent = note;
-                priceDisplay.classList.add('active');
-            } else {
-                priceDisplay.classList.remove('active');
-            }
-        }
-        
-        // Add event listeners to radio buttons
-        document.querySelectorAll('input[name="participationType"], input[name="isYmjMember"], input[name="category"]').forEach(radio => {
-            radio.addEventListener('change', updatePriceDisplay);
-        });
-        
-        // Form submission handling
-        const form = document.getElementById('registrationForm');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const loadingSpinner = document.getElementById('loadingSpinner');
-        
-        form.addEventListener('submit', function(e) {
+        // Form submission
+        $('#registrationForm').on('submit', function(e) {
             e.preventDefault();
             
-            // Validate at least one date is selected
-            const dateCheckboxes = document.querySelectorAll('input[name="reservationDates"]:checked');
-            if (dateCheckboxes.length === 0) {
-                alert(translations[currentLang]['alert-date']);
+            // Validate dates
+            const datesSelected = $('input[name="date"]:checked').length;
+            if (datesSelected === 0) {
+                showNotification('Please select at least one date for the MasterClass', 'error');
                 return;
             }
             
-            // Show loading spinner
-            loadingSpinner.style.display = 'block';
+            // Validate payment proof if required
+            const feeAmount = getFeeAmount();
+            if (feeAmount !== translations[currentLang]["free"]) {
+                const paymentProof = $('#payment-proof')[0].files.length;
+                if (paymentProof === 0) {
+                    showNotification('Please upload payment proof', 'error');
+                    return;
+                }
+            }
             
             // Get form data
-            const formData = new FormData(form);
+            const formData = new FormData(this);
+            const formValues = {};
             
-            // Convert file to base64
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+            formData.forEach((value, key) => {
+                if (formValues[key]) {
+                    if (!Array.isArray(formValues[key])) {
+                        formValues[key] = [formValues[key]];
+                    }
+                    formValues[key].push(value);
+                } else {
+                    formValues[key] = value;
+                }
+            });
             
-            reader.onload = function(e) {
-                // Add base64 image to form data
-                const base64Image = e.target.result;
-                formData.append('paymentProofBase64', base64Image);
+            // Add fee amount to form data
+            formValues['fee'] = getFeeAmount();
+            
+            // Handle file upload
+            const fileInput = $('#payment-proof')[0];
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
                 
-                // Get price based on selection
-                const participationType = document.querySelector('input[name="participationType"]:checked').value;
-                const isYmjMember = document.querySelector('input[name="isYmjMember"]:checked').value;
-                const category = document.querySelector('input[name="category"]:checked').value;
-                const price = priceData[participationType][isYmjMember][category];
-                
-                // Prepare data for Google Sheets
-                const data = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    school: formData.get('school'),
-                    schoolLevel: formData.get('schoolLevel'),
-                    isYmjMember: formData.get('isYmjMember'),
-                    participationType: formData.get('participationType'),
-                    category: formData.get('category'),
-                    price: price,
-                    reservationDates: Array.from(document.querySelectorAll('input[name="reservationDates"]:checked')).map(cb => cb.value).join(', '),
-                    paymentProof: base64Image,
-                    timestamp: new Date().toISOString()
+                reader.onload = function(e) {
+                    formValues['payment-proof-data'] = e.target.result;
+                    formValues['payment-proof-name'] = file.name;
+                    
+                    // Submit to Google Sheets
+                    submitToGoogleSheets(formValues);
                 };
                 
-                // Send data to Google Sheets
-                sendToGoogleSheets(data);
-            };
-            
-            if (file) {
                 reader.readAsDataURL(file);
             } else {
-                // No file uploaded
-                const participationType = document.querySelector('input[name="participationType"]:checked').value;
-                const isYmjMember = document.querySelector('input[name="isYmjMember"]:checked').value;
-                const category = document.querySelector('input[name="category"]:checked').value;
-                const price = priceData[participationType][isYmjMember][category];
-                
-                const data = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    school: formData.get('school'),
-                    schoolLevel: formData.get('schoolLevel'),
-                    isYmjMember: formData.get('isYmjMember'),
-                    participationType: formData.get('participationType'),
-                    category: formData.get('category'),
-                    price: price,
-                    reservationDates: Array.from(document.querySelectorAll('input[name="reservationDates"]:checked')).map(cb => cb.value).join(', '),
-                    paymentProof: '',
-                    timestamp: new Date().toISOString()
-                };
-                
-                sendToGoogleSheets(data);
+                // Submit to Google Sheets without payment proof
+                submitToGoogleSheets(formValues);
             }
         });
         
-        function sendToGoogleSheets(data) {
+        // Submit to Google Sheets
+        function submitToGoogleSheets(data) {
             // Replace with your Google Apps Script URL
-            const googleAppsScriptURL = 'https://script.google.com/macros/s/AKfycbwz_RdvFJoP6Ns0yMUMFxP4-AGb9p3zc6AK1SOE6dPFrnz6foprEiTkfaLQ39IlrmvP/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzuZ6Zi4NA4RDwINKRylnU7RNH2Qkt86VEksZI1NI0oHx3V6InF0dEGLiHsobyZcSI/exec';
             
-            fetch(googleAppsScriptURL, {
+            $.ajax({
+                url: scriptURL,
                 method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
+                dataType: 'json',
+                data: data,
+                success: function(response) {
+                    showNotification('Registration submitted successfully!', 'success');
+                    
+                    // Redirect to WhatsApp
+                    redirectToWhatsApp(data);
                 },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                // Hide loading spinner
-                loadingSpinner.style.display = 'none';
-                
-                // Show success message
-                successMessage.style.display = 'block';
-                
-                // Prepare WhatsApp message
-                const whatsappMessage = prepareWhatsAppMessage(data);
-                
-                // Redirect to WhatsApp after a short delay
-                setTimeout(() => {
-                    window.location.href = `https://wa.me/6285924703474?text=${encodeURIComponent(whatsappMessage)}`;
-                }, 2000);
-            })
-            .catch(error => {
-                // Hide loading spinner
-                loadingSpinner.style.display = 'none';
-                
-                // Show error message
-                errorMessage.style.display = 'block';
-                console.error('Error:', error);
+                error: function(error) {
+                    showNotification('Error submitting registration. Please try again.', 'error');
+                    console.error(error);
+                }
             });
         }
         
-        function prepareWhatsAppMessage(data) {
-            let datesText = '';
-            if (data.reservationDates.includes('23')) datesText += currentLang === 'zh' ? '2023年6月23日' : (currentLang === 'en' ? 'June 23, 2023' : '23 Juni 2023');
-            if (data.reservationDates.includes('24')) {
-                if (datesText) datesText += currentLang === 'zh' ? ' 和 ' : (currentLang === 'en' ? ' and ' : ' dan ');
-                datesText += currentLang === 'zh' ? '2023年6月24日' : (currentLang === 'en' ? 'June 24, 2023' : '24 Juni 2023');
+        // Redirect to WhatsApp
+        function redirectToWhatsApp(data) {
+            const phoneNumber = '6285924703474'; // Your WhatsApp number with country code
+            
+            // Format message
+            let message = `*MasterClass Registration*\n\n`;
+            message += `*Name:* ${data.name}\n`;
+            message += `*Email:* ${data.email}\n`;
+            message += `*Phone:* ${data.phone}\n`;
+            message += `*School:* ${data.school}\n`;
+            message += `*Education Level:* ${data['education-level']}\n`;
+            message += `*YMJ Member:* ${data['ymj-member']}\n`;
+            message += `*Participation Type:* ${data['participation-type']}\n`;
+            
+            if (data.role) {
+                message += `*Role:* ${data.role}\n`;
             }
             
-            // Format participation type
-            const participationTypeText = data.participationType === 'Passive' 
-                ? (currentLang === 'zh' ? '被动（观察）' : (currentLang === 'en' ? 'Passive (Observation)' : 'Pasif (Observasi)'))
-                : (currentLang === 'zh' ? '主动' : (currentLang === 'en' ? 'Active' : 'Aktif'));
+            message += `*Fee:* ${data.fee}\n`;
             
-            // Format category
-            const categoryText = data.category === 'Teacher' 
-                ? (currentLang === 'zh' ? '教师' : (currentLang === 'en' ? 'Teacher' : 'Guru'))
-                : (data.category === 'Student' 
-                    ? (currentLang === 'zh' ? '学生' : (currentLang === 'en' ? 'Student' : 'Siswa'))
-                    : (currentLang === 'zh' ? '普通' : (currentLang === 'en' ? 'General' : 'Umum')));
+            if (data.date) {
+                if (Array.isArray(data.date)) {
+                    message += `*Dates:* ${data.date.join(', ')} June 2023\n`;
+                } else {
+                    message += `*Date:* ${data.date} June 2023\n`;
+                }
+            }
             
-            // Format YMJ member
-            const isYmjMemberText = data.isYmjMember === 'Yes' 
-                ? (currentLang === 'zh' ? '是' : (currentLang === 'en' ? 'Yes' : 'Ya'))
-                : (currentLang === 'zh' ? '否' : (currentLang === 'en' ? 'No' : 'Tidak'));
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             
-            // Get message template
-            const messageTemplate = translations[currentLang]['whatsapp-message'];
-            
-            // Replace placeholders
-            const message = messageTemplate
-                .replace('{name}', data.name)
-                .replace('{email}', data.email)
-                .replace('{phone}', data.phone)
-                .replace('{school}', data.school)
-                .replace('{schoolLevel}', data.schoolLevel)
-                .replace('{isYmjMember}', isYmjMemberText)
-                .replace('{participationType}', participationTypeText)
-                .replace('{category}', categoryText)
-                .replace('{price}', data.price)
-                .replace('{reservationDates}', datesText);
-            
-            return message.trim();
+            // Redirect to WhatsApp
+            window.open(whatsappURL, '_blank');
         }
         
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Show notification
+        function showNotification(message, type) {
+            $('#notification-message').text(message);
+            $('#notification').removeClass('success error').addClass(type);
+            $('#notification').addClass('show');
+            
+            setTimeout(function() {
+                $('#notification').removeClass('show');
+            }, 5000);
+        }
+        
+        // Initialize page
+        $(document).ready(function() {
+            translatePage();
         });
     </script>
 </body>
