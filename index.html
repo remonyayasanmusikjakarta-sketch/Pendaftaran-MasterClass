@@ -3,289 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasterClass Registration - Guiseppe Fausto Mudugno</title>
+    <title>Formulir Pendaftaran MasterClass - Guiseppe Fausto Mudugno</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <!-- QR Code Generator -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <!-- Barcode Generator -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     
     <style>
-        :root {
-            --primary-color: #8B4513;
-            --secondary-color: #D2691E;
-            --accent-color: #FFD700;
-            --text-color: #333;
-            --light-bg: #FFF8DC;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-color);
-            background-color: var(--light-bg);
-            overflow-x: hidden;
-        }
-        
-        .navbar {
-            background-color: var(--primary-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            color: white !important;
-        }
-        
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/seed/musicclass/1920/800.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 0;
-            position: relative;
-        }
-        
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .professor-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            transition: transform 0.3s;
-        }
-        
-        .professor-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .professor-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent-color);
-        }
-        
-        .form-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        
-        .form-control, .form-select {
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            padding: 12px;
-            margin-bottom: 15px;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 0.25rem rgba(210, 105, 30, 0.25);
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            padding: 10px 30px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-        
-        .price-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .price-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: translateY(-3px);
-        }
-        
-        .price-card.selected {
-            border-color: var(--primary-color);
-            background-color: rgba(139, 69, 19, 0.05);
-        }
-        
-        .price-card h5 {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-        
-        .price-card .price {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-        
-        .payment-info {
-            background-color: var(--light-bg);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: none;
-        }
-        
-        .music-note {
-            position: absolute;
-            font-size: 30px;
-            color: var(--accent-color);
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-        
+        :root { --primary-color: #8B4513; --secondary-color: #D2691E; --accent-color: #FFD700; --text-color: #333; --light-bg: #FFF8DC; }
+        body { font-family: 'Roboto', sans-serif; color: var(--text-color); background-color: var(--light-bg); overflow-x: hidden; }
+        .navbar { background-color: var(--primary-color); }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 700; color: white !important; }
+        .hero-section { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/seed/musicclass/1920/800.jpg'); background-size: cover; background-position: center; color: white; padding: 100px 0; text-align: center; }
+        .hero-title { font-family: 'Playfair Display', serif; font-weight: 700; }
+        .section-title { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--primary-color); margin-bottom: 30px; position: relative; padding-bottom: 15px; }
+        .section-title:after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 3px; background-color: var(--accent-color); }
+        .form-section { background-color: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .price-card { border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 15px; cursor: pointer; transition: all 0.3s; }
+        .price-card:hover, .price-card.selected { border-color: var(--primary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .price-card.selected { background-color: rgba(139, 69, 19, 0.05); }
+        .price-card .price { font-size: 24px; font-weight: 700; color: var(--secondary-color); }
+        .payment-info { background-color: var(--light-bg); border-radius: 10px; padding: 20px; margin-top: 20px; }
+        .music-note { position: absolute; font-size: 30px; color: var(--accent-color); opacity: 0.2; animation: float 6s ease-in-out infinite; pointer-events: none; }
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(10deg); } 100% { transform: translateY(0px) rotate(0deg); } }
         .note1 { top: 20%; left: 5%; animation-delay: 0s; }
         .note2 { top: 60%; left: 10%; animation-delay: 1s; }
         .note3 { top: 30%; right: 10%; animation-delay: 2s; }
         .note4 { top: 70%; right: 5%; animation-delay: 3s; }
-        
-        .language-selector {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-        }
-        
-        .footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 30px 0;
-        }
-        
-        .contact-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .contact-info i {
-            margin-right: 10px;
-            color: var(--accent-color);
-        }
-        
-        #qrCode {
-            margin: 20px auto;
-            width: 200px;
-            height: 200px;
-        }
-        
-        .success-message {
-            display: none;
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        
-        .error-message {
-            display: none;
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .spinner-border {
-            width: 3rem;
-            height: 3rem;
-        }
+        .language-selector { position: absolute; top: 15px; right: 15px; z-index: 1050; }
+        .footer { background-color: var(--primary-color); color: white; padding: 30px 0; margin-top: 50px; }
+        #qrCode, #barcode { margin: 10px auto; }
+        #qrCode { width: 200px; height: 200px; }
+        #barcode svg { width: 100%; max-width: 250px; height: auto; }
+        .success-message, .error-message { display: none; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .success-message { background-color: #d4edda; color: #155724; }
+        .error-message { background-color: #f8d7da; color: #721c24; }
+        .loading-spinner { display: none; text-align: center; margin: 20px 0; }
     </style>
 </head>
 <body>
-    <!-- Music Notes Animation -->
+    <!-- Animasi Musik -->
     <div class="music-note note1"><i class="fas fa-music"></i></div>
     <div class="music-note note2"><i class="fas fa-music"></i></div>
     <div class="music-note note3"><i class="fas fa-music"></i></div>
     <div class="music-note note4"><i class="fas fa-music"></i></div>
-    
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-music me-2"></i>MasterClass Registration
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#professor">Professor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#registration">Pendaftaran</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Kontak</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Language Selector -->
+
+    <!-- Pemilih Bahasa -->
     <div class="language-selector">
         <select class="form-select" id="languageSelector" style="width: 120px;">
             <option value="id">Indonesia</option>
@@ -293,681 +65,301 @@
             <option value="zh">中文</option>
         </select>
     </div>
-    
+
+    <!-- Navigasi -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-music me-2"></i><span data-translate="navBrand">MasterClass YMJ</span></a>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="container text-center">
-            <h1 class="hero-title" data-aos="fade-up">MasterClass Dengan Mr. Guiseppe Fausto Mudugno</h1>
-            <p class="lead" data-aos="fade-up" data-aos-delay="100">Director, Conservatorio "Vechi-Tonelli" Modena, Italy</p>
-            <p class="lead" data-aos="fade-up" data-aos-delay="200">Organized by: Yayasan Musik Jakarta</p>
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="hero-title" data-aos="fade-up" data-translate="heroTitle">MasterClass Dengan Mr. Guiseppe Fausto Mudugno</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="100" data-translate="heroSubtitle">Director, Conservatorio "Vechi-Tonelli" Modena, Italy</p>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200" data-translate="heroOrganizer">Organized by: Yayasan Musik Jakarta</p>
             <p class="lead" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-calendar-alt me-2"></i>23-24 Juni 2023
+                <i class="fas fa-calendar-alt me-2"></i><span data-translate="heroDate">23-24 Juni 2023</span> | <i class="fas fa-map-marker-alt me-2"></i><span data-translate="heroVenue">YMJ BSD Auditorium</span>
             </p>
-            <p class="lead" data-aos="fade-up" data-aos-delay="400">
-                <i class="fas fa-map-marker-alt me-2"></i>YMJ BSD Auditorium Jl. Letnan Soetopo, BSD
-            </p>
-            <a href="#registration" class="btn btn-primary btn-lg mt-4" data-aos="fade-up" data-aos-delay="500">
-                Daftar Sekarang
-            </a>
         </div>
-    </section>
-    
-    <!-- Professor Section -->
-    <section id="professor" class="py-5">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Tentang Professor</h2>
-            <div class="row">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="professor-card">
-                        <img src="https://picsum.photos/seed/professor/600/400.jpg" alt="Guiseppe Fausto Mudugno" class="professor-img">
-                        <div class="p-4">
-                            <h3>Mr. Guiseppe Fausto Mudugno</h3>
-                            <p class="text-muted">Director, Conservatorio "Vechi-Tonelli" Modena, Italy</p>
-                            <p>Mr. Guiseppe Fausto Mudugno adalah seorang direktur dan musisi terkenal dari Conservatorio "Vechi-Tonelli" di Modena, Italia. Dengan pengalaman lebih dari 20 tahun dalam dunia musik klasik, beliau telah menginspirasi banyak musisi muda di seluruh dunia.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="professor-card h-100">
-                        <div class="p-4">
-                            <h3>Tentang MasterClass</h3>
-                            <p>MasterClass ini dirancang untuk memberikan pengalaman belajar yang mendalam tentang teknik musik klasik dan interpretasi musik dari seorang ahli. Peserta akan mendapatkan wawasan berharga tentang:</p>
-                            <ul>
-                                <li>Teknik permainan instrumen yang advanced</li>
-                                <li>Interpretasi musik klasik</li>
-                                <li>Pendekatan historis dalam musik</li>
-                                <li>Tips karir di dunia musik klasik</li>
-                            </ul>
-                            <p>MasterClass ini terbuka untuk pemusik dari berbagai tingkatan, dari pemula hingga profesional.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Registration Section -->
-    <section id="registration" class="py-5">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Formulir Pendaftaran</h2>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- Formulir Pendaftaran -->
+        <section id="registration">
+            <h2 class="section-title" data-aos="fade-up" data-translate="formTitle">Formulir Pendaftaran</h2>
             
             <div class="success-message" id="successMessage">
-                <i class="fas fa-check-circle me-2"></i>
-                <span id="successText">Pendaftaran berhasil! Anda akan diarahkan ke WhatsApp untuk konfirmasi.</span>
+                <i class="fas fa-check-circle me-2"></i><span data-translate="successMessage">Pendaftaran berhasil! Anda akan diarahkan ke WhatsApp.</span>
             </div>
-            
             <div class="error-message" id="errorMessage">
-                <i class="fas fa-exclamation-circle me-2"></i>
-                <span id="errorText">Terjadi kesalahan. Silakan coba lagi.</span>
+                <i class="fas fa-exclamation-circle me-2"></i><span data-translate="errorMessage">Terjadi kesalahan. Silakan coba lagi.</span>
             </div>
-            
             <div class="loading-spinner" id="loadingSpinner">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <p class="mt-2">Sedang memproses pendaftaran...</p>
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-2" data-translate="processingMessage">Sedang memproses...</p>
             </div>
-            
+
             <div class="form-section" data-aos="fade-up">
-                <form id="registrationForm">
+                <form id="registrationForm" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="name" required>
-                            </div>
+                        <div class="col-md-6 mb-3"><label for="name" class="form-label" data-translate="labelName">Nama Lengkap</label><input type="text" class="form-control" id="name" name="name" required></div>
+                        <div class="col-md-6 mb-3"><label for="email" class="form-label" data-translate="labelEmail">Email</label><input type="email" class="form-control" id="email" name="email" required></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label for="phone" class="form-label" data-translate="labelPhone">No. HP</label><input type="tel" class="form-control" id="phone" name="phone" required></div>
+                        <div class="col-md-6 mb-3"><label for="school" class="form-label" data-translate="labelSchool">Asal Sekolah/Institusi</label><input type="text" class="form-control" id="school" name="school" required></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="level" class="form-label" data-translate="labelLevel">Tingkat Sekolah</label>
+                            <select class="form-select" id="level" name="level" required>
+                                <option value="" selected disabled data-translate="selectLevel">Pilih Tingkat</option>
+                                <option value="SD" data-translate="levelSD">SD</option><option value="SMP" data-translate="levelSMP">SMP</option><option value="SMA" data-translate="levelSMA">SMA</option><option value="Universitas" data-translate="levelUniversity">Universitas</option><option value="Profesional" data-translate="levelProfessional">Profesional</option>
+                            </select>
                         </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="ymjStatus" class="form-label" data-translate="labelYmjStatus">Status Keanggotaan YMJ</label>
+                            <select class="form-select" id="ymjStatus" name="ymjStatus" required>
+                                <option value="" selected disabled data-translate="selectYmjStatus">Pilih Status</option>
+                                <option value="Guru YMJ" data-translate="ymjTeacher">Guru YMJ</option><option value="Siswa YMJ" data-translate="ymjStudent">Siswa YMJ</option><option value="Non-YMJ" data-translate="ymjNon">Non-YMJ</option>
+                            </select>
                         </div>
                     </div>
-                    
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">No. HP</label>
-                                <input type="tel" class="form-control" id="phone" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="school" class="form-label">Asal Sekolah/Institusi</label>
-                                <input type="text" class="form-control" id="school" required>
-                            </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="reservationDate" class="form-label" data-translate="labelDate">Pilih Tanggal Reservasi</label>
+                            <select class="form-select" id="reservationDate" name="reservationDate" required>
+                                <option value="" selected disabled data-translate="selectDate">Pilih Tanggal</option>
+                                <option value="23 Juni 2023">23 Juni 2023</option><option value="24 Juni 2023">24 Juni 2023</option><option value="23 & 24 Juni 2023">23 & 24 Juni 2023</option>
+                            </select>
                         </div>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="level" class="form-label">Tingkat Sekolah</label>
-                                <select class="form-select" id="level" required>
-                                    <option value="" selected disabled>Pilih Tingkat</option>
-                                    <option value="sd">SD</option>
-                                    <option value="smp">SMP</option>
-                                    <option value="sma">SMA</option>
-                                    <option value="universitas">Universitas</option>
-                                    <option value="profesional">Profesional</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="ymjStatus" class="form-label">Status YMJ</label>
-                                <select class="form-select" id="ymjStatus" required>
-                                    <option value="" selected disabled>Pilih Status</option>
-                                    <option value="ymj-teacher">Guru YMJ</option>
-                                    <option value="ymj-student">Siswa YMJ</option>
-                                    <option value="non-ymj">Non-YMJ</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="participationType" class="form-label">Tipe Partisipasi</label>
-                                <select class="form-select" id="participationType" required>
-                                    <option value="" selected disabled>Pilih Tipe Partisipasi</option>
-                                    <option value="passive">Passive Participant (Observation)</option>
-                                    <option value="active">Active Participant</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="reservationDate" class="form-label">Reservasi Tanggal</label>
-                                <select class="form-select" id="reservationDate" required>
-                                    <option value="" selected disabled>Pilih Tanggal</option>
-                                    <option value="23">23 Juni 2023</option>
-                                    <option value="24">24 Juni 2023</option>
-                                    <option value="both">23 & 24 Juni 2023</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
+
+                    <h4 class="mt-4 mb-3" data-translate="categoryTitle">Pilih Kategori Partisipasi</h4>
                     <div class="price-options">
-                        <h4 class="mb-3">Pilih Paket Partisipasi</h4>
                         <div class="row">
+                            <div class="col-md-6"><div class="price-card" data-type="passive" data-ymj="Guru YMJ" data-price="0"><h5 data-translate="passiveTeacher">Passive - Guru YMJ</h5><p data-translate="observation">Observation</p><div class="price">Free</div></div></div>
+                            <div class="col-md-6"><div class="price-card" data-type="passive" data-ymj="Siswa YMJ" data-price="0"><h5 data-translate="passiveStudent">Passive - Siswa YMJ</h5><p data-translate="observation">Observation</p><div class="price">Free</div></div></div>
+                            <div class="col-md-6"><div class="price-card" data-type="passive" data-ymj="Non-YMJ" data-price="50000"><h5 data-translate="passiveNon">Passive - Non-YMJ</h5><p data-translate="observation">Observation</p><div class="price">IDR 50,000</div></div></div>
+                            <div class="col-md-6"><div class="price-card" data-type="active" data-ymj="Guru YMJ" data-price="100000"><h5 data-translate="activeTeacher">Active - Guru YMJ</h5><p data-translate="fullParticipation">Full Participation</p><div class="price">IDR 100,000</div></div></div>
+                            <div class="col-md-6"><div class="price-card" data-type="active" data-ymj="Siswa YMJ" data-price="500000"><h5 data-translate="activeStudent">Active - Siswa YMJ</h5><p data-translate="fullParticipation">Full Participation</p><div class="price">IDR 500,000</div></div></div>
+                            <div class="col-md-6"><div class="price-card" data-type="active" data-ymj="Non-YMJ" data-price="650000"><h5 data-translate="activeNon">Active - Non-YMJ</h5><p data-translate="fullParticipation">Full Participation</p><div class="price">IDR 650,000</div></div></div>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" id="participationType" name="participationType">
+                    <input type="hidden" id="price" name="price">
+
+                    <!-- INFORMASI PEMBAYARAN -->
+                    <div class="payment-info">
+                        <h4 data-translate="paymentInfoTitle">Informasi Pembayaran</h4>
+                        <div class="row">
+                            <!-- INFORMASI REKENING SELALU TERLIHAT -->
                             <div class="col-md-6">
-                                <div class="price-card" data-type="passive" data-ymj="ymj-teacher" data-price="0">
-                                    <h5>Passive Participant - YMJ Teacher</h5>
-                                    <p>Observation only</p>
-                                    <div class="price">Free of Charge</div>
-                                </div>
+                                <p><strong data-translate="bank">Bank:</strong> BCA</p>
+                                <p><strong data-translate="accountNumber">No. Rekening:</strong> 5880182244</p>
+                                <p><strong data-translate="accountName">a.n.:</strong> Yay Musik Jakarta</p>
                             </div>
-                            <div class="col-md-6">
-                                <div class="price-card" data-type="passive" data-ymj="ymj-student" data-price="0">
-                                    <h5>Passive Participant - YMJ Student</h5>
-                                    <p>Observation only</p>
-                                    <div class="price">Free of Charge</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="price-card" data-type="passive" data-ymj="non-ymj" data-price="50000">
-                                    <h5>Passive Participant - Non-YMJ</h5>
-                                    <p>Observation only</p>
-                                    <div class="price">IDR 50,000</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="price-card" data-type="active" data-ymj="ymj-teacher" data-price="100000">
-                                    <h5>Active Participant - YMJ Teacher</h5>
-                                    <p>Full participation</p>
-                                    <div class="price">IDR 100,000</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="price-card" data-type="active" data-ymj="ymj-student" data-price="500000">
-                                    <h5>Active Participant - YMJ Student</h5>
-                                    <p>Full participation</p>
-                                    <div class="price">IDR 500,000</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="price-card" data-type="active" data-ymj="non-ymj" data-price="650000">
-                                    <h5>Active Participant - Non-YMJ</h5>
-                                    <p>Full participation</p>
-                                    <div class="price">IDR 650,000</div>
+                            
+                            <!-- QR, BARCODE, DAN UPLOAD BUKTI HANYA MUNCUL JIKA ADA HARGA -->
+                            <div class="col-md-6 text-center">
+                                <div id="paymentDetails" style="display: none;">
+                                     <p><strong data-translate="totalPayment">Total Pembayaran:</strong> <span id="totalPayment" class="fw-bold text-danger">IDR 0</span></p>
+                                     <hr class="my-3">
+                                     <p><strong data-translate="qrCode">QR Code untuk Pembayaran</strong></p>
+                                     <div id="qrCode"></div>
+                                     <hr class="my-3">
+                                     <p><strong data-translate="barcode">Barcode Rekening</strong></p>
+                                     <div id="barcode"></div>
+                                     <hr class="my-3">
+                                     <div class="mt-3">
+                                        <label for="paymentProof" class="form-label" data-translate="uploadProof">Upload Bukti Pembayaran</label>
+                                        <input type="file" class="form-control" id="paymentProof" name="paymentProof" accept="image/*" required>
+                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="payment-info" id="paymentInfo">
-                        <h4 class="mb-3">Informasi Pembayaran</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p><strong>Bank:</strong> BCA</p>
-                                <p><strong>No. Rekening:</strong> 5880182244</p>
-                                <p><strong>a.n.:</strong> Yay Musik Jakarta</p>
-                                <p><strong>Total Pembayaran:</strong> <span id="totalPayment" class="fw-bold text-danger">IDR 0</span></p>
-                            </div>
-                            <div class="col-md-6">
-                                <div id="qrCode"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-3">
-                            <label for="paymentProof" class="form-label">Upload Bukti Pembayaran</label>
-                            <input type="file" class="form-control" id="paymentProof" accept="image/*" required>
-                            <div class="form-text">Format: JPG, PNG, maksimal 2MB</div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-4">
-                        <button type="submit" class="btn btn-primary" id="submitBtn">
-                            <i class="fas fa-paper-plane me-2"></i>Kirim Pendaftaran
+                    <div class="mt-4 text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i><span data-translate="submitBtn">Kirim Pendaftaran</span>
                         </button>
                     </div>
                 </form>
             </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Hubungi Kami</h2>
-            <div class="row">
-                <div class="col-md-6" data-aos="fade-right">
-                    <div class="contact-info">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>+62 811-9892-413</span>
-                    </div>
-                    <div class="contact-info">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@ymj.or.id</span>
-                    </div>
-                    <div class="contact-info">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>YMJ BSD Auditorium Jl. Letnan Soetopo, BSD</span>
-                    </div>
-                </div>
-                <div class="col-md-6" data-aos="fade-left">
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.63962891476913!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f9395e5b4c9b%3A0x6c5b5b5b5b5b5b5b!2sBSD%20City!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+        </section>
+    </main>
+
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer text-center">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>Yayasan Musik Jakarta</h5>
-                    <p>Mendorong dan mengembangkan pendidikan musik di Indonesia</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="social-links">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
-                    </div>
-                    <p class="mt-3">&copy; 2023 Yayasan Musik Jakarta. All rights reserved.</p>
-                </div>
-            </div>
+            <p class="mb-1"><span data-translate="contactUs">Hubungi Kami:</span> <a href="https://wa.me/628119892413" class="text-white">+62 811-9892-413</a></p>
+            <p>&copy; 2023 Yayasan Musik Jakarta. All rights reserved.</p>
         </div>
     </footer>
-    
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <!-- AOS Animation JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-        
-        // Language translations
+        // Inisialisasi AOS
+        AOS.init({ duration: 800, once: true });
+
+        // --- OBJEK TRANSLASI ---
         const translations = {
             id: {
-                home: "Beranda",
-                professor: "Professor",
-                registration: "Pendaftaran",
-                contact: "Kontak",
-                fullName: "Nama Lengkap",
-                email: "Email",
-                phone: "No. HP",
-                school: "Asal Sekolah/Institusi",
-                level: "Tingkat Sekolah",
-                ymjStatus: "Status YMJ",
-                participationType: "Tipe Partisipasi",
-                reservationDate: "Reservasi Tanggal",
-                passiveParticipant: "Passive Participant (Observation)",
-                activeParticipant: "Active Participant",
-                selectLevel: "Pilih Tingkat",
-                selectStatus: "Pilih Status",
-                selectType: "Pilih Tipe Partisipasi",
+                navBrand: "MasterClass YMJ", heroTitle: "MasterClass Dengan Mr. Guiseppe Fausto Mudugno", heroSubtitle: "Director, Conservatorio \"Vechi-Tonelli\" Modena, Italy", heroOrganizer: "Organized by: Yayasan Musik Jakarta", heroDate: "23-24 Juni 2023", heroVenue: "YMJ BSD Auditorium",
+                formTitle: "Formulir Pendaftaran", successMessage: "Pendaftaran berhasil! Anda akan diarahkan ke WhatsApp.", errorMessage: "Terjadi kesalahan. Silakan coba lagi.", processingMessage: "Sedang memproses...",
+                labelName: "Nama Lengkap", labelEmail: "Email", labelPhone: "No. HP", labelSchool: "Asal Sekolah/Institusi", labelLevel: "Tingkat Sekolah", labelYmjStatus: "Status Keanggotaan YMJ", labelDate: "Pilih Tanggal Reservasi",
+                selectLevel: "Pilih Tingkat", levelSD: "SD", levelSMP: "SMP", levelSMA: "SMA", levelUniversity: "Universitas", levelProfessional: "Profesional",
+                selectYmjStatus: "Pilih Status", ymjTeacher: "Guru YMJ", ymjStudent: "Siswa YMJ", ymjNon: "Non-YMJ",
                 selectDate: "Pilih Tanggal",
-                paymentInfo: "Informasi Pembayaran",
-                uploadPaymentProof: "Upload Bukti Pembayaran",
-                sendRegistration: "Kirim Pendaftaran",
-                successMessage: "Pendaftaran berhasil! Anda akan diarahkan ke WhatsApp untuk konfirmasi.",
-                errorMessage: "Terjadi kesalahan. Silakan coba lagi.",
-                processing: "Sedang memproses pendaftaran...",
-                freeOfCharge: "Free of Charge",
-                observationOnly: "Observation only",
-                fullParticipation: "Full participation"
+                categoryTitle: "Pilih Kategori Partisipasi",
+                passiveTeacher: "Passive - Guru YMJ", passiveStudent: "Passive - Siswa YMJ", passiveNon: "Passive - Non-YMJ",
+                activeTeacher: "Active - Guru YMJ", activeStudent: "Active - Siswa YMJ", activeNon: "Active - Non-YMJ",
+                observation: "Observation", fullParticipation: "Full Participation",
+                paymentInfoTitle: "Informasi Pembayaran", bank: "Bank", accountNumber: "No. Rekening", accountName: "a.n.", totalPayment: "Total Pembayaran", qrCode: "QR Code untuk Pembayaran",
+                barcode: "Barcode Rekening", uploadProof: "Upload Bukti Pembayaran", submitBtn: "Kirim Pendaftaran",
+                contactUs: "Hubungi Kami:",
+                errorSelectCategory: "Silakan pilih kategori partisipasi.", errorUploadProof: "Silakan upload bukti pembayaran."
             },
             en: {
-                home: "Home",
-                professor: "Professor",
-                registration: "Registration",
-                contact: "Contact",
-                fullName: "Full Name",
-                email: "Email",
-                phone: "Phone Number",
-                school: "School/Institution",
-                level: "Education Level",
-                ymjStatus: "YMJ Status",
-                participationType: "Participation Type",
-                reservationDate: "Reservation Date",
-                passiveParticipant: "Passive Participant (Observation)",
-                activeParticipant: "Active Participant",
-                selectLevel: "Select Level",
-                selectStatus: "Select Status",
-                selectType: "Select Participation Type",
+                navBrand: "MasterClass YMJ", heroTitle: "MasterClass with Mr. Guiseppe Fausto Mudugno", heroSubtitle: "Director, Conservatorio \"Vechi-Tonelli\" Modena, Italy", heroOrganizer: "Organized by: Yayasan Musik Jakarta", heroDate: "June 23-24, 2023", heroVenue: "YMJ BSD Auditorium",
+                formTitle: "Registration Form", successMessage: "Registration successful! You will be redirected to WhatsApp.", errorMessage: "An error occurred. Please try again.", processingMessage: "Processing...",
+                labelName: "Full Name", labelEmail: "Email", labelPhone: "Phone Number", labelSchool: "School/Institution", labelLevel: "Education Level", labelYmjStatus: "YMJ Membership Status", labelDate: "Select Reservation Date",
+                selectLevel: "Select Level", levelSD: "Elementary", levelSMP: "Junior High", levelSMA: "Senior High", levelUniversity: "University", levelProfessional: "Professional",
+                selectYmjStatus: "Select Status", ymjTeacher: "YMJ Teacher", ymjStudent: "YMJ Student", ymjNon: "Non-YMJ",
                 selectDate: "Select Date",
-                paymentInfo: "Payment Information",
-                uploadPaymentProof: "Upload Payment Proof",
-                sendRegistration: "Send Registration",
-                successMessage: "Registration successful! You will be redirected to WhatsApp for confirmation.",
-                errorMessage: "An error occurred. Please try again.",
-                processing: "Processing registration...",
-                freeOfCharge: "Free of Charge",
-                observationOnly: "Observation only",
-                fullParticipation: "Full participation"
+                categoryTitle: "Select Participation Category",
+                passiveTeacher: "Passive - YMJ Teacher", passiveStudent: "Passive - YMJ Student", passiveNon: "Passive - Non-YMJ",
+                activeTeacher: "Active - YMJ Teacher", activeStudent: "Active - YMJ Student", activeNon: "Active - Non-YMJ",
+                observation: "Observation", fullParticipation: "Full Participation",
+                paymentInfoTitle: "Payment Information", bank: "Bank", accountNumber: "Account Number", accountName: "a.n.", totalPayment: "Total Payment", qrCode: "QR Code for Payment",
+                barcode: "Account Barcode", uploadProof: "Upload Payment Proof", submitBtn: "Send Registration",
+                contactUs: "Contact Us:",
+                errorSelectCategory: "Please select a participation category.", errorUploadProof: "Please upload the payment proof."
             },
             zh: {
-                home: "首页",
-                professor: "教授",
-                registration: "注册",
-                contact: "联系",
-                fullName: "全名",
-                email: "电子邮件",
-                phone: "电话号码",
-                school: "学校/机构",
-                level: "教育水平",
-                ymjStatus: "YMJ状态",
-                participationType: "参与类型",
-                reservationDate: "预订日期",
-                passiveParticipant: "被动参与者（观察）",
-                activeParticipant: "主动参与者",
-                selectLevel: "选择水平",
-                selectStatus: "选择状态",
-                selectType: "选择参与类型",
+                navBrand: "YMJ 大师课", heroTitle: "与朱塞佩·福斯托·穆杜尼奥大师的大师课", heroSubtitle: "意大利摩德纳“Vecchi-Tonelli”音乐学院院长", heroOrganizer: "主办方：雅加达音乐基金会", heroDate: "2023年6月23-24日", heroVenue: "YMJ BSD 礼堂",
+                formTitle: "注册表格", successMessage: "注册成功！您将被重定向到WhatsApp。", errorMessage: "发生错误。请再试一次。", processingMessage: "正在处理...",
+                labelName: "全名", labelEmail: "电子邮件", labelPhone: "电话号码", labelSchool: "学校/机构", labelLevel: "教育水平", labelYmjStatus: "YMJ 会员身份", labelDate: "选择预订日期",
+                selectLevel: "选择水平", levelSD: "小学", levelSMP: "初中", levelSMA: "高中", levelUniversity: "大学", levelProfessional: "专业",
+                selectYmjStatus: "选择身份", ymjTeacher: "YMJ 老师", ymjStudent: "YMJ 学生", ymjNon: "非 YMJ",
                 selectDate: "选择日期",
-                paymentInfo: "付款信息",
-                uploadPaymentProof: "上传付款证明",
-                sendRegistration: "发送注册",
-                successMessage: "注册成功！您将被重定向到WhatsApp进行确认。",
-                errorMessage: "发生错误。请再试一次。",
-                processing: "正在处理注册...",
-                freeOfCharge: "免费",
-                observationOnly: "仅观察",
-                fullParticipation: "全面参与"
+                categoryTitle: "选择参与类别",
+                passiveTeacher: "被动 - YMJ 老师", passiveStudent: "被动 - YMJ 学生", passiveNon: "被动 - 非 YMJ",
+                activeTeacher: "主动 - YMJ 老师", activeStudent: "主动 - YMJ 学生", activeNon: "主动 - 非 YMJ",
+                observation: "观察", fullParticipation: "全面参与",
+                paymentInfoTitle: "付款信息", bank: "银行", accountNumber: "帐号", accountName: "帐户名", totalPayment: "总付款", qrCode: "付款二维码",
+                barcode: "账户条形码", uploadProof: "上传付款证明", submitBtn: "发送注册",
+                contactUs: "联系我们：",
+                errorSelectCategory: "请选择参与类别。", errorUploadProof: "请上传付款证明。"
             }
         };
-        
-        // Language selector
-        document.getElementById('languageSelector').addEventListener('change', function() {
-            const lang = this.value;
-            updateLanguage(lang);
-        });
-        
+
+        // --- FUNGSI UNTUK MENGUBAH BAHASA ---
         function updateLanguage(lang) {
-            const elements = document.querySelectorAll('[data-translate]');
-            elements.forEach(element => {
+            document.querySelectorAll('[data-translate]').forEach(element => {
                 const key = element.getAttribute('data-translate');
-                if (translations[lang][key]) {
+                if (translations[lang] && translations[lang][key]) {
                     element.textContent = translations[lang][key];
                 }
             });
-            
-            // Update form labels
-            document.querySelector('label[for="name"]').textContent = translations[lang].fullName;
-            document.querySelector('label[for="email"]').textContent = translations[lang].email;
-            document.querySelector('label[for="phone"]').textContent = translations[lang].phone;
-            document.querySelector('label[for="school"]').textContent = translations[lang].school;
-            document.querySelector('label[for="level"]').textContent = translations[lang].level;
-            document.querySelector('label[for="ymjStatus"]').textContent = translations[lang].ymjStatus;
-            document.querySelector('label[for="participationType"]').textContent = translations[lang].participationType;
-            document.querySelector('label[for="reservationDate"]').textContent = translations[lang].reservationDate;
-            document.querySelector('label[for="paymentProof"]').textContent = translations[lang].uploadPaymentProof;
-            document.querySelector('#submitBtn').innerHTML = `<i class="fas fa-paper-plane me-2"></i>${translations[lang].sendRegistration}`;
-            document.querySelector('#successText').textContent = translations[lang].successMessage;
-            document.querySelector('#errorText').textContent = translations[lang].errorMessage;
-            document.querySelector('#loadingSpinner p').textContent = translations[lang].processing;
-            
-            // Update select options
-            document.querySelector('#level option[value=""]').textContent = translations[lang].selectLevel;
-            document.querySelector('#ymjStatus option[value=""]').textContent = translations[lang].selectStatus;
-            document.querySelector('#participationType option[value=""]').textContent = translations[lang].selectType;
-            document.querySelector('#reservationDate option[value=""]').textContent = translations[lang].selectDate;
-            document.querySelector('#participationType option[value="passive"]').textContent = translations[lang].passiveParticipant;
-            document.querySelector('#participationType option[value="active"]').textContent = translations[lang].activeParticipant;
-            
-            // Update price cards
-            document.querySelectorAll('.price-card p').forEach((element, index) => {
-                if (index % 3 === 0 || index % 3 === 1) {
-                    element.textContent = translations[lang].observationOnly;
-                } else {
-                    element.textContent = translations[lang].fullParticipation;
-                }
-            });
-            
-            document.querySelectorAll('.price-card .price').forEach(element => {
-                if (element.textContent === 'Free of Charge') {
-                    element.textContent = translations[lang].freeOfCharge;
-                }
-            });
-            
-            // Update nav links
-            document.querySelector('a[href="#home"]').textContent = translations[lang].home;
-            document.querySelector('a[href="#professor"]').textContent = translations[lang].professor;
-            document.querySelector('a[href="#registration"]').textContent = translations[lang].registration;
-            document.querySelector('a[href="#contact"]').textContent = translations[lang].contact;
         }
-        
-        // Price card selection
-        let selectedPriceCard = null;
+        document.getElementById('languageSelector').addEventListener('change', function() { updateLanguage(this.value); });
+
+        // --- LOGIKA FORMULIR ---
         let selectedPrice = 0;
-        
+
         document.querySelectorAll('.price-card').forEach(card => {
             card.addEventListener('click', function() {
-                // Remove selected class from all cards
                 document.querySelectorAll('.price-card').forEach(c => c.classList.remove('selected'));
-                
-                // Add selected class to clicked card
                 this.classList.add('selected');
-                selectedPriceCard = this;
-                selectedPrice = parseInt(this.getAttribute('data-price'));
                 
-                // Update form values
+                selectedPrice = parseInt(this.getAttribute('data-price'));
                 const type = this.getAttribute('data-type');
                 const ymj = this.getAttribute('data-ymj');
-                
-                document.getElementById('participationType').value = type;
+
+                document.getElementById('participationType').value = `${type} - ${ymj}`;
+                document.getElementById('price').value = selectedPrice;
                 document.getElementById('ymjStatus').value = ymj;
-                
-                // Show payment info if price > 0
+
                 if (selectedPrice > 0) {
-                    document.getElementById('paymentInfo').style.display = 'block';
+                    document.getElementById('paymentDetails').style.display = 'block';
                     document.getElementById('totalPayment').textContent = `IDR ${selectedPrice.toLocaleString('id-ID')}`;
-                    
-                    // Generate QR Code
                     generateQRCode();
+                    generateBarcode();
                 } else {
-                    document.getElementById('paymentInfo').style.display = 'none';
+                    document.getElementById('paymentDetails').style.display = 'none';
                 }
             });
         });
-        
-        // Update price cards based on form selection
-        document.getElementById('participationType').addEventListener('change', updatePriceCards);
-        document.getElementById('ymjStatus').addEventListener('change', updatePriceCards);
-        
-        function updatePriceCards() {
-            const type = document.getElementById('participationType').value;
-            const ymj = document.getElementById('ymjStatus').value;
-            
-            if (type && ymj) {
-                // Find matching price card
-                document.querySelectorAll('.price-card').forEach(card => {
-                    if (card.getAttribute('data-type') === type && card.getAttribute('data-ymj') === ymj) {
-                        card.click();
-                    }
-                });
-            }
-        }
-        
-        // Generate QR Code
+
         function generateQRCode() {
-            const qrContainer = document.getElementById('qrCode');
-            qrContainer.innerHTML = ''; // Clear previous QR code
-            
-            const accountNumber = '5880182244';
-            const accountName = 'Yay Musik Jakarta';
-            const bankName = 'BCA';
-            const amount = selectedPrice;
-            
-            const qrText = `Bank: ${bankName}\nNo. Rekening: ${accountNumber}\n a.n.: ${accountName}\nJumlah: IDR ${amount.toLocaleString('id-ID')}`;
-            
-            new QRCode(qrContainer, {
-                text: qrText,
-                width: 200,
-                height: 200,
-                colorDark: '#000000',
-                colorLight: '#ffffff',
-                correctLevel: QRCode.CorrectLevel.H
-            });
+            const qrContainer = document.getElementById('qrCode'); qrContainer.innerHTML = '';
+            const qrText = `Bank: BCA\nNo. Rek: 5880182244\na.n.: Yay Musik Jakarta\nJumlah: IDR ${selectedPrice.toLocaleString('id-ID')}`;
+            new QRCode(qrContainer, { text: qrText, width: 180, height: 180 });
         }
         
-        // Form submission
+        function generateBarcode() {
+            const barcodeContainer = document.getElementById("barcode"); barcodeContainer.innerHTML = '';
+            JsBarcode("#barcode", "5880182244", { format: "CODE128", width: 2, height: 60, displayValue: true, fontSize: 16, margin: 10 });
+        }
+
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Validate form
-            if (!selectedPriceCard) {
-                showError('Silakan pilih paket partisipasi terlebih dahulu.');
-                return;
-            }
-            
-            if (selectedPrice > 0 && !document.getElementById('paymentProof').files[0]) {
-                showError('Silakan upload bukti pembayaran.');
-                return;
-            }
-            
-            // Show loading spinner
+            const currentLang = document.getElementById('languageSelector').value;
+            if (!document.querySelector('.price-card.selected')) { showError(translations[currentLang].errorSelectCategory); return; }
+            if (selectedPrice > 0 && !document.getElementById('paymentProof').files[0]) { showError(translations[currentLang].errorUploadProof); return; }
             document.getElementById('loadingSpinner').style.display = 'block';
             document.getElementById('submitBtn').disabled = true;
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                school: document.getElementById('school').value,
-                level: document.getElementById('level').value,
-                ymjStatus: document.getElementById('ymjStatus').value,
-                participationType: document.getElementById('participationType').value,
-                reservationDate: document.getElementById('reservationDate').value,
-                price: selectedPrice
-            };
-            
-            // Handle payment proof
-            if (selectedPrice > 0) {
-                const paymentProofFile = document.getElementById('paymentProof').files[0];
-                
-                // Convert file to base64
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    formData.paymentProof = event.target.result;
-                    
-                    // Submit to Google Sheets
-                    submitToGoogleSheets(formData);
-                };
-                reader.readAsDataURL(paymentProofFile);
-            } else {
-                // Submit to Google Sheets
-                submitToGoogleSheets(formData);
-            }
+            const formData = new FormData(e.target);
+            submitToGoogleSheets(formData);
         });
-        
+
         function submitToGoogleSheets(formData) {
-            // Google Apps Script URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwZgCYKo91JFwaTgbZAoIqlXrRLe5BQoDnBoMwuE5cuB39QxhKozuzDdJjNxsnGTniY_w/exec'; // Replace with your actual Google Apps Script URL
-            
-            // Create form data
-            const data = new FormData();
-            Object.keys(formData).forEach(key => {
-                data.append(key, formData[key]);
-            });
-            
-            // Submit to Google Sheets
-            fetch(scriptURL, {
-                method: 'POST',
-                body: data
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.status === 'success') {
-                    // Show success message
-                    document.getElementById('successMessage').style.display = 'block';
-                    
-                    // Redirect to WhatsApp after a short delay
-                    setTimeout(() => {
-                        redirectToWhatsApp(formData);
-                    }, 2000);
-                } else {
-                    showError(result.message || 'Terjadi kesalahan saat mengirim data.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showError('Terjadi kesalahan. Silakan coba lagi.');
-            })
-            .finally(() => {
-                // Hide loading spinner
-                document.getElementById('loadingSpinner').style.display = 'none';
-                document.getElementById('submitBtn').disabled = false;
-            });
+            // *** GANTI DENGAN URL WEB APP ANDA YANG SEBENARNYA ***
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz00UkxA0sj8c-U-QAnQq_b9sfl8g05pyPYAZ3XVsw9n-Qxj7UtTg3HLVXy5MCjYJ6Q/exec'; 
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.status === 'success') { showSuccess(); setTimeout(() => redirectToWhatsApp(formData), 1500); }
+                    else { showError(result.message || 'Gagal mengirim data.'); }
+                })
+                .catch(error => { console.error('Error!', error.message); showError('Terjadi kesalahan jaringan. Silakan coba lagi.'); })
+                .finally(() => {
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                    document.getElementById('submitBtn').disabled = false;
+                });
         }
-        
+
         function redirectToWhatsApp(formData) {
-            // Format message for WhatsApp
-            let message = `*MasterClass Registration*\n\n`;
-            message += `*Name:* ${formData.name}\n`;
-            message += `*Email:* ${formData.email}\n`;
-            message += `*Phone:* ${formData.phone}\n`;
-            message += `*School:* ${formData.school}\n`;
-            message += `*Level:* ${formData.level}\n`;
-            message += `*YMJ Status:* ${formData.ymjStatus}\n`;
-            message += `*Participation Type:* ${formData.participationType}\n`;
-            message += `*Reservation Date:* ${formData.reservationDate}\n`;
-            message += `*Price:* IDR ${formData.price.toLocaleString('id-ID')}\n`;
-            
-            // Encode message for URL
-            const encodedMessage = encodeURIComponent(message);
-            
-            // WhatsApp URL
-            const whatsappURL = `https://wa.me/6285924703474?text=${encodedMessage}`;
-            
-            // Redirect to WhatsApp
+            const message = `*Pendaftaran MasterClass*\n\n` + `Nama: ${formData.get('name')}\n` + `Email: ${formData.get('email')}\n` + `HP: ${formData.get('phone')}\n` + `Sekolah: ${formData.get('school')}\n` + `Status: ${formData.get('ymjStatus')}\n` + `Partisipasi: ${formData.get('participationType')}\n` + `Tanggal: ${formData.get('reservationDate')}\n` + `Harga: IDR ${parseInt(formData.get('price')).toLocaleString('id-ID')}`;
+            const whatsappURL = `https://wa.me/6285924703474?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
-            
-            // Reset form
             document.getElementById('registrationForm').reset();
-            document.querySelectorAll('.price-card').forEach(card => card.classList.remove('selected'));
-            document.getElementById('paymentInfo').style.display = 'none';
-            selectedPriceCard = null;
+            document.querySelectorAll('.price-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('paymentDetails').style.display = 'none';
             selectedPrice = 0;
-            
-            // Hide success message after a delay
-            setTimeout(() => {
-                document.getElementById('successMessage').style.display = 'none';
-            }, 5000);
+            document.getElementById('successMessage').style.display = 'none';
         }
-        
-        function showError(message) {
-            document.getElementById('errorText').textContent = message;
-            document.getElementById('errorMessage').style.display = 'block';
-            
-            // Hide error message after a delay
-            setTimeout(() => {
-                document.getElementById('errorMessage').style.display = 'none';
-            }, 5000);
+
+        function showSuccess() { document.getElementById('successMessage').style.display = 'block'; }
+        function showError(msg) {
+            const errEl = document.getElementById('errorMessage');
+            errEl.querySelector('span').textContent = msg;
+            errEl.style.display = 'block';
+            setTimeout(() => { errEl.style.display = 'none'; }, 5000);
         }
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+
+        // Set bahasa default saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => { updateLanguage('id'); });
     </script>
 </body>
 </html>
-
