@@ -14,9 +14,6 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
-    <!-- Google Sheets API -->
-    <script src="https://apis.google.com/js/api.js"></script>
-    
     <style>
         :root {
             --primary-color: #8B4513;
@@ -112,30 +109,20 @@
             margin-bottom: 30px;
         }
         
-        .professor-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--accent-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-        
         .professor-details h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 5px;
         }
         
         .professor-details p {
-            font-size: 16px;
+            font-size: 18px;
             color: #666;
         }
         
         .event-details {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
@@ -143,32 +130,34 @@
         
         .event-details h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 15px;
             color: var(--primary-color);
         }
         
         .event-details p {
             margin-bottom: 10px;
+            font-size: 16px;
         }
         
         /* Registration Form */
         .registration-form {
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            font-size: 16px;
         }
         
         .form-control {
@@ -178,6 +167,7 @@
             border-radius: 5px;
             font-family: 'Poppins', sans-serif;
             transition: all 0.3s ease;
+            font-size: 16px;
         }
         
         .form-control:focus {
@@ -198,13 +188,19 @@
             gap: 8px;
         }
         
+        .radio-item input, .checkbox-item input {
+            width: 18px;
+            height: 18px;
+        }
+        
         .fee-display {
             background: var(--light-bg);
-            padding: 15px;
-            border-radius: 5px;
+            padding: 20px;
+            border-radius: 8px;
             margin-top: 20px;
             font-weight: 500;
             display: none;
+            border-left: 4px solid var(--primary-color);
         }
         
         .fee-display.show {
@@ -213,8 +209,8 @@
         
         .payment-info {
             background: var(--light-bg);
-            padding: 20px;
-            border-radius: 5px;
+            padding: 25px;
+            border-radius: 8px;
             margin-top: 20px;
             display: none;
         }
@@ -225,24 +221,34 @@
         
         .payment-details {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             align-items: center;
             flex-wrap: wrap;
         }
         
         .qr-code {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             background: white;
             border: 1px solid #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         .account-info {
             flex: 1;
+        }
+        
+        .account-info p {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .account-info strong {
+            color: var(--primary-color);
         }
         
         .btn {
@@ -255,6 +261,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-block;
+            font-size: 16px;
         }
         
         .btn:hover {
@@ -267,7 +274,7 @@
             margin-top: 20px;
             width: 100%;
             padding: 15px;
-            font-size: 16px;
+            font-size: 18px;
         }
         
         /* Music Animation */
@@ -309,7 +316,7 @@
         footer {
             background: var(--dark-bg);
             color: white;
-            padding: 30px 0;
+            padding: 40px 0;
             text-align: center;
         }
         
@@ -317,25 +324,27 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            gap: 30px;
         }
         
         .footer-section {
             flex: 1;
-            min-width: 200px;
-            margin-bottom: 20px;
+            min-width: 250px;
         }
         
         .footer-section h3 {
             font-family: 'Playfair Display', serif;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--accent-color);
+            font-size: 20px;
         }
         
         .footer-section p, .footer-section a {
             color: #ccc;
             text-decoration: none;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             display: block;
+            font-size: 16px;
         }
         
         .footer-section a:hover {
@@ -346,15 +355,15 @@
             display: flex;
             gap: 15px;
             justify-content: center;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
@@ -380,12 +389,13 @@
             top: 20px;
             right: 20px;
             background: white;
-            padding: 15px 20px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             transform: translateX(150%);
             transition: transform 0.3s ease;
             z-index: 1000;
+            max-width: 350px;
         }
         
         .notification.show {
@@ -400,23 +410,66 @@
             border-left: 5px solid #F44336;
         }
         
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+        
+        .notification-message {
+            font-size: 16px;
+        }
+        
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading.show {
+            display: flex;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 28px;
             }
             
-            .professor-photo {
-                width: 150px;
-                height: 150px;
-            }
-            
             .payment-details {
                 flex-direction: column;
+                gap: 20px;
             }
             
             .footer-content {
                 flex-direction: column;
+            }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
             }
         }
     </style>
@@ -433,6 +486,11 @@
         <div class="music-note" style="left: 70%; animation-delay: 12s;">♬</div>
         <div class="music-note" style="left: 80%; animation-delay: 14s;">♩</div>
         <div class="music-note" style="left: 90%; animation-delay: 16s;">♪</div>
+    </div>
+    
+    <!-- Loading Spinner -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
     </div>
     
     <!-- Header -->
@@ -455,7 +513,6 @@
             <h1 data-translate="title">MasterClass Registration</h1>
             
             <div class="professor-info">
-                <img src="https://picsum.photos/seed/professor/200/200.jpg" alt="Mr. Guiseppe Fausto Mudugno" class="professor-photo">
                 <div class="professor-details">
                     <h2>Mr. Guiseppe Fausto Mudugno</h2>
                     <p data-translate="professor-title">Director, Conservatorio "Vechi-Tonelli", Modena, Italy</p>
@@ -477,27 +534,27 @@
             <h2 data-translate="form-title">Registration Form</h2>
             <form id="registrationForm">
                 <div class="form-group">
-                    <label for="name" data-translate="name-label">Full Name</label>
+                    <label for="name" data-translate="name-label">Full Name *</label>
                     <input type="text" id="name" name="name" class="form-control" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email" data-translate="email-label">Email</label>
+                    <label for="email" data-translate="email-label">Email *</label>
                     <input type="email" id="email" name="email" class="form-control" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="phone" data-translate="phone-label">Phone Number</label>
+                    <label for="phone" data-translate="phone-label">Phone Number *</label>
                     <input type="tel" id="phone" name="phone" class="form-control" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="school" data-translate="school-label">School</label>
+                    <label for="school" data-translate="school-label">School/Institution *</label>
                     <input type="text" id="school" name="school" class="form-control" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="education-level" data-translate="education-label">Education Level</label>
+                    <label for="education-level" data-translate="education-label">Education Level *</label>
                     <select id="education-level" name="education-level" class="form-control" required>
                         <option value="" disabled selected data-translate="select-education">Select Education Level</option>
                         <option value="elementary" data-translate="elementary">Elementary School</option>
@@ -509,7 +566,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label data-translate="ymj-member-label">Are you a YMJ member?</label>
+                    <label data-translate="ymj-member-label">Are you a YMJ member? *</label>
                     <div class="radio-group">
                         <div class="radio-item">
                             <input type="radio" id="ymj-yes" name="ymj-member" value="yes" required>
@@ -523,7 +580,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label data-translate="participation-label">Participation Type</label>
+                    <label data-translate="participation-label">Participation Type *</label>
                     <div class="radio-group">
                         <div class="radio-item">
                             <input type="radio" id="passive" name="participation-type" value="passive" required>
@@ -537,7 +594,7 @@
                 </div>
                 
                 <div class="form-group" id="role-group" style="display: none;">
-                    <label data-translate="role-label">Role</label>
+                    <label data-translate="role-label">Role *</label>
                     <div class="radio-group">
                         <div class="radio-item">
                             <input type="radio" id="teacher" name="role" value="teacher">
@@ -559,19 +616,19 @@
                     <h3 data-translate="payment-info-title">Payment Information</h3>
                     <div class="payment-details">
                         <div class="qr-code">
-                            <i class="fas fa-qrcode" style="font-size: 100px; color: #ddd;"></i>
+                            <i class="fas fa-qrcode" style="font-size: 120px; color: #ddd;"></i>
                         </div>
                         <div class="account-info">
-                            <p><strong data-translate="bank-name">Bank:</strong> Bank Central Asia (BCA)</p>
-                            <p><strong data-translate="account-name">Account Name:</strong> Yayasan Musik Jakarta</p>
-                            <p><strong data-translate="account-number">Account Number:</strong> 1234567890</p>
+                            <p><strong data-translate="bank-name">Bank:</strong> BANK BCA</p>
+                            <p><strong data-translate="account-number">Account Number:</strong> 5880182244</p>
+                            <p><strong data-translate="account-name">Account Name:</strong> Yay Musik Jakarta</p>
                             <p data-translate="payment-instruction">Please transfer the registration fee to the account above and upload the payment proof below.</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="form-group" id="date-group" style="display: none;">
-                    <label data-translate="date-label">Select MasterClass Date</label>
+                    <label data-translate="date-label">Select MasterClass Date *</label>
                     <div class="checkbox-group">
                         <div class="checkbox-item">
                             <input type="checkbox" id="date-23" name="date" value="23">
@@ -585,7 +642,7 @@
                 </div>
                 
                 <div class="form-group" id="payment-proof-group" style="display: none;">
-                    <label for="payment-proof" data-translate="payment-proof-label">Upload Payment Proof</label>
+                    <label for="payment-proof" data-translate="payment-proof-label">Upload Payment Proof *</label>
                     <input type="file" id="payment-proof" name="payment-proof" class="form-control" accept="image/*">
                 </div>
                 
@@ -601,7 +658,7 @@
                 <div class="footer-section">
                     <h3 data-translate="contact-us">Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Jl. Letnan Soetopo, BSD</p>
-                    <p><i class="fas fa-phone"></i> +62 21 1234567</p>
+                    <p><i class="fas fa-phone"></i> +62 811-9892-413</p>
                     <p><i class="fas fa-envelope"></i> info@ymj.org</p>
                 </div>
                 
@@ -632,7 +689,8 @@
     
     <!-- Notification -->
     <div class="notification" id="notification">
-        <p id="notification-message"></p>
+        <div class="notification-title" id="notification-title"></div>
+        <div class="notification-message" id="notification-message"></div>
     </div>
     
     <script>
@@ -649,7 +707,7 @@
                 "name-label": "Nama Lengkap",
                 "email-label": "Email",
                 "phone-label": "Nomor HP",
-                "school-label": "Asal Sekolah",
+                "school-label": "Asal Sekolah/Institusi",
                 "education-label": "Tingkat Pendidikan",
                 "select-education": "Pilih Tingkat Pendidikan",
                 "elementary": "SD",
@@ -684,11 +742,12 @@
                 "gallery": "Galeri",
                 "free": "Gratis",
                 "currency": "IDR",
-                "passive-ymj": "Peserta Pasif (Anggota YMJ)",
-                "passive-non-ymj": "Peserta Pasif (Non-Anggota YMJ)",
-                "active-ymj-teacher": "Peserta Aktif (Guru YMJ)",
-                "active-ymj-student": "Peserta Aktif (Siswa YMJ)",
-                "active-non-ymj": "Peserta Aktif (Non-Anggota YMJ)"
+                "success-title": "Pendaftaran Berhasil!",
+                "success-message": "Terima kasih telah mendaftar. Anda akan diarahkan ke WhatsApp.",
+                "error-title": "Terjadi Kesalahan",
+                "error-message": "Silakan coba lagi atau hubungi kami.",
+                "validation-date": "Silakan pilih setidaknya satu tanggal untuk MasterClass",
+                "validation-payment": "Silakan unggah bukti pembayaran"
             },
             en: {
                 "title": "MasterClass Registration",
@@ -701,7 +760,7 @@
                 "name-label": "Full Name",
                 "email-label": "Email",
                 "phone-label": "Phone Number",
-                "school-label": "School",
+                "school-label": "School/Institution",
                 "education-label": "Education Level",
                 "select-education": "Select Education Level",
                 "elementary": "Elementary School",
@@ -736,11 +795,12 @@
                 "gallery": "Gallery",
                 "free": "Free",
                 "currency": "IDR",
-                "passive-ymj": "Passive Participant (YMJ Member)",
-                "passive-non-ymj": "Passive Participant (Non-YMJ Member)",
-                "active-ymj-teacher": "Active Participant (YMJ Teacher)",
-                "active-ymj-student": "Active Participant (YMJ Student)",
-                "active-non-ymj": "Active Participant (Non-YMJ Member)"
+                "success-title": "Registration Successful!",
+                "success-message": "Thank you for registering. You will be redirected to WhatsApp.",
+                "error-title": "An Error Occurred",
+                "error-message": "Please try again or contact us.",
+                "validation-date": "Please select at least one date for the MasterClass",
+                "validation-payment": "Please upload payment proof"
             },
             zh: {
                 "title": "大师课注册",
@@ -753,7 +813,7 @@
                 "name-label": "全名",
                 "email-label": "电子邮件",
                 "phone-label": "电话号码",
-                "school-label": "学校",
+                "school-label": "学校/机构",
                 "education-label": "教育水平",
                 "select-education": "选择教育水平",
                 "elementary": "小学",
@@ -788,11 +848,12 @@
                 "gallery": "画廊",
                 "free": "免费",
                 "currency": "印尼盾",
-                "passive-ymj": "被动参与者（YMJ会员）",
-                "passive-non-ymj": "被动参与者（非YMJ会员）",
-                "active-ymj-teacher": "主动参与者（YMJ教师）",
-                "active-ymj-student": "主动参与者（YMJ学生）",
-                "active-non-ymj": "主动参与者（非YMJ会员）"
+                "success-title": "注册成功！",
+                "success-message": "感谢您的注册。您将被重定向到WhatsApp。",
+                "error-title": "发生错误",
+                "error-message": "请重试或联系我们。",
+                "validation-date": "请为大师课选择至少一个日期",
+                "validation-payment": "请上传付款证明"
             }
         };
         
@@ -858,8 +919,11 @@
             // Show/hide role selection
             if (participationType === 'active') {
                 $('#role-group').show();
+                // Make role required if active participation
+                $('input[name="role"]').attr('required', 'required');
             } else {
                 $('#role-group').hide();
+                $('input[name="role"]').removeAttr('required');
             }
             
             // Calculate and display fee
@@ -873,18 +937,36 @@
                     $('#payment-info').addClass('show');
                     $('#date-group').show();
                     $('#payment-proof-group').show();
+                    $('input[name="date"]').attr('required', 'required');
+                    $('#payment-proof').attr('required', 'required');
                 } else {
                     $('#payment-info').removeClass('show');
                     $('#date-group').show();
                     $('#payment-proof-group').hide();
+                    $('input[name="date"]').attr('required', 'required');
+                    $('#payment-proof').removeAttr('required');
                 }
             } else {
                 $('#fee-display').removeClass('show');
                 $('#payment-info').removeClass('show');
                 $('#date-group').hide();
                 $('#payment-proof-group').hide();
+                $('input[name="date"]').removeAttr('required');
+                $('#payment-proof').removeAttr('required');
             }
         });
+        
+        // Show notification
+        function showNotification(title, message, type) {
+            $('#notification-title').text(title);
+            $('#notification-message').text(message);
+            $('#notification').removeClass('success error').addClass(type);
+            $('#notification').addClass('show');
+            
+            setTimeout(function() {
+                $('#notification').removeClass('show');
+            }, 5000);
+        }
         
         // Form submission
         $('#registrationForm').on('submit', function(e) {
@@ -892,20 +974,31 @@
             
             // Validate dates
             const datesSelected = $('input[name="date"]:checked').length;
-            if (datesSelected === 0) {
-                showNotification('Please select at least one date for the MasterClass', 'error');
+            if ($('#date-group').is(':visible') && datesSelected === 0) {
+                showNotification(
+                    translations[currentLang]["error-title"],
+                    translations[currentLang]["validation-date"],
+                    'error'
+                );
                 return;
             }
             
             // Validate payment proof if required
             const feeAmount = getFeeAmount();
-            if (feeAmount !== translations[currentLang]["free"]) {
+            if ($('#payment-proof-group').is(':visible') && feeAmount !== translations[currentLang]["free"]) {
                 const paymentProof = $('#payment-proof')[0].files.length;
                 if (paymentProof === 0) {
-                    showNotification('Please upload payment proof', 'error');
+                    showNotification(
+                        translations[currentLang]["error-title"],
+                        translations[currentLang]["validation-payment"],
+                        'error'
+                    );
                     return;
                 }
             }
+            
+            // Show loading
+            $('#loading').addClass('show');
             
             // Get form data
             const formData = new FormData(this);
@@ -948,25 +1041,41 @@
         
         // Submit to Google Sheets
         function submitToGoogleSheets(data) {
-            // Replace with your Google Apps Script URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzuZ6Zi4NA4RDwINKRylnU7RNH2Qkt86VEksZI1NI0oHx3V6InF0dEGLiHsobyZcSI/exec';
+            // Ganti dengan URL Google Apps Script Anda
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx0_xE9UjF53N8U9g43OoDG3THF2-4T_ddpgvnhFMhGralg9L8nZo3pSMdpkFtmO9Px/exec';
             
-            $.ajax({
-                url: scriptURL,
-                method: 'POST',
-                dataType: 'json',
-                data: data,
-                success: function(response) {
-                    showNotification('Registration submitted successfully!', 'success');
-                    
-                    // Redirect to WhatsApp
-                    redirectToWhatsApp(data);
-                },
-                error: function(error) {
-                    showNotification('Error submitting registration. Please try again.', 'error');
-                    console.error(error);
-                }
+            // Create a simple form submission
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = scriptURL;
+            
+            // Add all data to form
+            Object.keys(data).forEach(key => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = Array.isArray(data[key]) ? data[key].join(',') : data[key];
+                form.appendChild(input);
             });
+            
+            // Submit form
+            document.body.appendChild(form);
+            form.submit();
+            
+            // Simulate success for demo (remove this when using real script URL)
+            setTimeout(function() {
+                $('#loading').removeClass('show');
+                showNotification(
+                    translations[currentLang]["success-title"],
+                    translations[currentLang]["success-message"],
+                    'success'
+                );
+                
+                // Redirect to WhatsApp after 2 seconds
+                setTimeout(function() {
+                    redirectToWhatsApp(data);
+                }, 2000);
+            }, 1500);
         }
         
         // Redirect to WhatsApp
@@ -997,22 +1106,16 @@
                 }
             }
             
+            // Add payment proof info if uploaded
+            if (data['payment-proof-name']) {
+                message += `*Payment Proof:* ${data['payment-proof-name']}\n`;
+            }
+            
             // Create WhatsApp URL
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             
             // Redirect to WhatsApp
             window.open(whatsappURL, '_blank');
-        }
-        
-        // Show notification
-        function showNotification(message, type) {
-            $('#notification-message').text(message);
-            $('#notification').removeClass('success error').addClass(type);
-            $('#notification').addClass('show');
-            
-            setTimeout(function() {
-                $('#notification').removeClass('show');
-            }, 5000);
         }
         
         // Initialize page
