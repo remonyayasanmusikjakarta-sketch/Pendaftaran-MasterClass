@@ -3,363 +3,504 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pendaftaran MasterClass - Guiseppe Fausto Mudugno</title>
+    <title>Pendaftaran MasterClass - Mr. Guiseppe Fausto Mudugno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- QR Code Generator -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <!-- Barcode Generator -->
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-    
+    <!-- ==================== CSS START ==================== -->
     <style>
-        :root { --primary-color: #8B4513; --secondary-color: #D2691E; --accent-color: #FFD700; --text-color: #333; --light-bg: #FFF8DC; }
-        body { font-family: 'Roboto', sans-serif; color: var(--text-color); background-color: var(--light-bg); overflow-x: hidden; }
-        .navbar { background-color: var(--primary-color); }
-        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 700; color: white !important; }
-        .hero-section { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/seed/musicclass/1920/800.jpg'); background-size: cover; background-position: center; color: white; padding: 100px 0; text-align: center; }
-        .hero-title { font-family: 'Playfair Display', serif; font-weight: 700; }
-        .section-title { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--primary-color); margin-bottom: 30px; position: relative; padding-bottom: 15px; }
-        .section-title:after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 3px; background-color: var(--accent-color); }
-        .form-section { background-color: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .price-card { border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 15px; cursor: pointer; transition: all 0.3s; }
-        .price-card:hover, .price-card.selected { border-color: var(--primary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .price-card.selected { background-color: rgba(139, 69, 19, 0.05); }
-        .price-card .price { font-size: 24px; font-weight: 700; color: var(--secondary-color); }
-        .payment-info { background-color: var(--light-bg); border-radius: 10px; padding: 20px; margin-top: 20px; }
-        .music-note { position: absolute; font-size: 30px; color: var(--accent-color); opacity: 0.2; animation: float 6s ease-in-out infinite; pointer-events: none; }
-        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(10deg); } 100% { transform: translateY(0px) rotate(0deg); } }
-        .note1 { top: 20%; left: 5%; animation-delay: 0s; }
-        .note2 { top: 60%; left: 10%; animation-delay: 1s; }
-        .note3 { top: 30%; right: 10%; animation-delay: 2s; }
-        .note4 { top: 70%; right: 5%; animation-delay: 3s; }
-        .language-selector { position: absolute; top: 15px; right: 15px; z-index: 1050; }
-        .footer { background-color: var(--primary-color); color: white; padding: 30px 0; margin-top: 50px; }
-        #qrCode, #barcode { margin: 10px auto; }
-        #qrCode { width: 200px; height: 200px; }
-        #barcode svg { width: 100%; max-width: 250px; height: auto; }
-        .success-message, .error-message { display: none; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
-        .success-message { background-color: #d4edda; color: #155724; }
-        .error-message { background-color: #f8d7da; color: #721c24; }
-        .loading-spinner { display: none; text-align: center; margin: 20px 0; }
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #f4b942;
+            --text-color: #ccd6f6;
+            --bg-color: #112240;
+            --light-bg-color: #1d2d4a;
+            --border-color: #233554;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px 50px;
+            background-color: var(--light-bg-color);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 20px;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .language-selector select {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-family: var(--font-body);
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .organizer {
+            font-style: italic;
+            color: #8892b0;
+        }
+
+        main h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .details {
+            background-color: var(--primary-color);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .details p {
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-color);
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-group label, .checkbox-group label {
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .price-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            color: var(--secondary-color);
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .price-display.visible {
+            opacity: 1;
+        }
+
+        .bank-info {
+            background-color: #1a2f4f;
+            border: 1px dashed var(--secondary-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #d4a835;
+            transform: translateY(-2px);
+        }
+
+        .music-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 2.5rem;
+            color: rgba(244, 185, 66, 0.2);
+            animation-name: float-up;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .note-1 { left: 10%; animation-duration: 15s; animation-delay: 0s; }
+        .note-2 { left: 50%; animation-duration: 18s; animation-delay: 2s; }
+        .note-3 { left: 80%; animation-duration: 20s; animation-delay: 5s; }
+
+        @keyframes float-up {
+            from { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            to { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .violin {
+            position: absolute;
+            bottom: 50px;
+            right: -150px;
+            width: 300px;
+            height: 100px;
+            background: url('https://i.imgur.com/k1w9b3e.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.1;
+            animation: violin-slide 25s linear infinite;
+        }
+
+        @keyframes violin-slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-100vw - 300px)); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: #8892b0;
+        }
+
+        @media (max-width: 768px) {
+            .container { margin: 20px auto; padding: 20px; }
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.4rem; }
+            .radio-group, .checkbox-group { flex-direction: column; gap: 10px; }
+        }
     </style>
+    <!-- ===================== CSS END ===================== -->
 </head>
 <body>
-    <!-- Animasi Musik -->
-    <div class="music-note note1"><i class="fas fa-music"></i></div>
-    <div class="music-note note2"><i class="fas fa-music"></i></div>
-    <div class="music-note note3"><i class="fas fa-music"></i></div>
-    <div class="music-note note4"><i class="fas fa-music"></i></div>
 
-    <!-- Pemilih Bahasa -->
-    <div class="language-selector">
-        <select class="form-select" id="languageSelector" style="width: 120px;">
-            <option value="id">Indonesia</option>
-            <option value="en">English</option>
-            <option value="zh">中文</option>
-        </select>
+    <div class="container">
+        <header>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="id">Bahasa Indonesia</option>
+                    <option value="en">English</option>
+                    <option value="zh">简体中文</option>
+                </select>
+            </div>
+            <h1 data-lang-id="Pendaftaran MasterClass" data-lang-en="MasterClass Registration" data-lang-zh="大师课注册">Pendaftaran MasterClass</h1>
+            <h2 class="subtitle">dengan Mr. Guiseppe Fausto Mudugno</h2>
+            <p class="organizer" data-lang-id="Diselenggarakan oleh: Yayasan Musik Jakarta" data-lang-en="Organized by: Yayasan Musik Jakarta" data-lang-zh="主办方：雅加达音乐基金会">Diselenggarakan oleh: Yayasan Musik Jakarta</p>
+        </header>
+
+        <main>
+            <section class="details">
+                <p><strong data-lang-id="Pembicara" data-lang-en="Speaker" data-lang-zh="讲师">Pembicara:</strong> Director, Conservatorio "Vechi-Tonelli", Modena, Italy</p>
+                <p><strong data-lang-id="Lokasi" data-lang-en="Venue" data-lang-zh="地点">Lokasi:</strong> YMJ BSD Auditorium, Jl. Letnan Soetopo, BSD</p>
+                <p><strong data-lang-id="Kontak" data-lang-en="Contact" data-lang-zh="联系">Kontak:</strong> +62 811-9892-413</p>
+            </section>
+
+            <form id="registrationForm">
+                <h3 data-lang-id="Formulir Pendaftaran" data-lang-en="Registration Form" data-lang-zh="注册表单">Formulir Pendaftaran</h3>
+                
+                <div class="form-group">
+                    <label for="nama" data-lang-id="Nama Lengkap" data-lang-en="Full Name" data-lang-zh="全名">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="noHp" data-lang-id="No. HP / WhatsApp" data-lang-en="Phone / WhatsApp" data-lang-zh="手机号/WhatsApp">No. HP / WhatsApp</label>
+                    <input type="tel" id="noHp" name="noHp" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="asalSekolah" data-lang-id="Asal Sekolah / Institusi" data-lang-en="School / Institution" data-lang-zh="学校/机构">Asal Sekolah / Institusi</label>
+                    <input type="text" id="asalSekolah" name="asalSekolah" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tingkat" data-lang-id="Tingkat Pendidikan" data-lang-en="Education Level" data-lang-zh="教育水平">Tingkat Pendidikan</label>
+                    <select id="tingkat" name="tingkat" required>
+                        <option value="" data-lang-id="-- Pilih --" data-lang-en="-- Choose --" data-lang-zh="-- 选择 --">-- Pilih --</option>
+                        <option value="SD" data-lang-id="SD / Sederajat" data-lang-en="Elementary" data-lang-zh="小学">SD / Sederajat</option>
+                        <option value="SMP" data-lang-id="SMP / Sederajat" data-lang-en="Junior High" data-lang-zh="初中">SMP / Sederajat</option>
+                        <option value="SMA" data-lang-id="SMA / SMK / Sederajat" data-lang-en="Senior High / Vocational" data-lang-zh="高中/职高">SMA / SMK / Sederajat</option>
+                        <option value="Mahasiswa" data-lang-id="Mahasiswa" data-lang-en="University Student" data-lang-zh="大学生">Mahasiswa</option>
+                        <option value="Profesional" data-lang-id="Profesional / Guru" data-lang-en="Professional / Teacher" data-lang-zh="专业人士/教师">Profesional / Guru</option>
+                        <option value="Lainnya" data-lang-id="Lainnya" data-lang-en="Other" data-lang-zh="其他">Lainnya</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-lang-id="Kategori Partisipasi" data-lang-en="Participation Category" data-lang-zh="参与类别">Kategori Partisipasi</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="participationType" value="passive" required> <span data-lang-id="Peserta Pasif (Observasi)" data-lang-en="Passive Participant (Observation)" data-lang-zh="被动参与者 (观摩)">Peserta Pasif (Observasi)</span></label>
+                        <label><input type="radio" name="participationType" value="active" required> <span data-lang-id="Peserta Aktif" data-lang-en="Active Participant" data-lang-zh="主动参与者">Peserta Aktif</span></label>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="ymjStatusGroup" style="display:none;">
+                    <label data-lang-id="Status Keanggotaan YMJ" data-lang-en="YMJ Membership Status" data-lang-zh="YMJ 会员状态">Status Keanggotaan YMJ</label>
+                    <div class="radio-group" id="ymjStatusOptions">
+                        <!-- Options will be populated by JS -->
+                    </div>
+                </div>
+
+                <div id="priceDisplay" class="price-display">
+                    <!-- Price will be shown here -->
+                </div>
+
+                <div id="bankInfo" class="bank-info" style="display:none;">
+                    <p data-lang-id="Silakan lakukan pembayaran ke:" data-lang-en="Please make the payment to:" data-lang-zh="请付款至以下账户：">Silakan lakukan pembayaran ke:</p>
+                    <p><strong>BANK BCA</strong></p>
+                    <p>No. Rek: <strong>5880182244</strong></p>
+                    <p>a/n: <strong>Yayasan Musik Jakarta</strong></p>
+                </div>
+
+                <div class="form-group" id="dateReservationGroup">
+                    <label data-lang-id="Pilih Tanggal Reservasi" data-lang-en="Select Reservation Date" data-lang-zh="选择预订日期">Pilih Tanggal Reservasi</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="tanggal" value="23"> 23</label>
+                        <label><input type="checkbox" name="tanggal" value="24"> 24</label>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="paymentProofGroup" style="display: none;">
+                    <label for="paymentProof" data-lang-id="Unggah Bukti Pembayaran" data-lang-en="Upload Payment Proof" data-lang-zh="上传付款凭证">Unggah Bukti Pembayaran</label>
+                    <input type="file" id="paymentProof" name="paymentProof" accept="image/*,.pdf">
+                </div>
+
+                <button type="submit" class="submit-btn" data-lang-id="Kirim Pendaftaran" data-lang-en="Submit Registration" data-lang-zh="提交注册">Kirim Pendaftaran</button>
+            </form>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Yayasan Musik Jakarta. All Rights Reserved.</p>
+        </footer>
     </div>
 
-    <!-- Navigasi -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-music me-2"></i><span data-translate="navBrand">MasterClass YMJ</span></a>
-        </div>
-    </nav>
+    <!-- Animated Music Notes -->
+    <div class="music-notes">
+        <div class="note note-1">♪</div>
+        <div class="note note-2">♫</div>
+        <div class="note note-3">♬</div>
+        <div class="violin"></div>
+    </div>
 
-    <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="container">
-            <h1 class="hero-title" data-aos="fade-up" data-translate="heroTitle">MasterClass Dengan Mr. Guiseppe Fausto Mudugno</h1>
-            <p class="lead" data-aos="fade-up" data-aos-delay="100" data-translate="heroSubtitle">Director, Conservatorio "Vechi-Tonelli" Modena, Italy</p>
-            <p class="lead" data-aos="fade-up" data-aos-delay="200" data-translate="heroOrganizer">Organized by: Yayasan Musik Jakarta</p>
-            <p class="lead" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-calendar-alt me-2"></i><span data-translate="heroDate">23-24 Juni 2023</span> | <i class="fas fa-map-marker-alt me-2"></i><span data-translate="heroVenue">YMJ BSD Auditorium</span>
-            </p>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container my-5">
-        <!-- Formulir Pendaftaran -->
-        <section id="registration">
-            <h2 class="section-title" data-aos="fade-up" data-translate="formTitle">Formulir Pendaftaran</h2>
-            
-            <div class="success-message" id="successMessage">
-                <i class="fas fa-check-circle me-2"></i><span data-translate="successMessage">Pendaftaran berhasil! Anda akan diarahkan ke WhatsApp.</span>
-            </div>
-            <div class="error-message" id="errorMessage">
-                <i class="fas fa-exclamation-circle me-2"></i><span data-translate="errorMessage">Terjadi kesalahan. Silakan coba lagi.</span>
-            </div>
-            <div class="loading-spinner" id="loadingSpinner">
-                <div class="spinner-border text-primary" role="status"></div>
-                <p class="mt-2" data-translate="processingMessage">Sedang memproses...</p>
-            </div>
-
-            <div class="form-section" data-aos="fade-up">
-                <form id="registrationForm" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-6 mb-3"><label for="name" class="form-label" data-translate="labelName">Nama Lengkap</label><input type="text" class="form-control" id="name" name="name" required></div>
-                        <div class="col-md-6 mb-3"><label for="email" class="form-label" data-translate="labelEmail">Email</label><input type="email" class="form-control" id="email" name="email" required></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3"><label for="phone" class="form-label" data-translate="labelPhone">No. HP</label><input type="tel" class="form-control" id="phone" name="phone" required></div>
-                        <div class="col-md-6 mb-3"><label for="school" class="form-label" data-translate="labelSchool">Asal Sekolah/Institusi</label><input type="text" class="form-control" id="school" name="school" required></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="level" class="form-label" data-translate="labelLevel">Tingkat Sekolah</label>
-                            <select class="form-select" id="level" name="level" required>
-                                <option value="" selected disabled data-translate="selectLevel">Pilih Tingkat</option>
-                                <option value="SD" data-translate="levelSD">SD</option><option value="SMP" data-translate="levelSMP">SMP</option><option value="SMA" data-translate="levelSMA">SMA</option><option value="Universitas" data-translate="levelUniversity">Universitas</option><option value="Profesional" data-translate="levelProfessional">Profesional</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="ymjStatus" class="form-label" data-translate="labelYmjStatus">Status Keanggotaan YMJ</label>
-                            <select class="form-select" id="ymjStatus" name="ymjStatus" required>
-                                <option value="" selected disabled data-translate="selectYmjStatus">Pilih Status</option>
-                                <option value="Guru YMJ" data-translate="ymjTeacher">Guru YMJ</option><option value="Siswa YMJ" data-translate="ymjStudent">Siswa YMJ</option><option value="Non-YMJ" data-translate="ymjNon">Non-YMJ</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="reservationDate" class="form-label" data-translate="labelDate">Pilih Tanggal Reservasi</label>
-                            <select class="form-select" id="reservationDate" name="reservationDate" required>
-                                <option value="" selected disabled data-translate="selectDate">Pilih Tanggal</option>
-                                <option value="23 Juni 2023">23 Juni 2023</option><option value="24 Juni 2023">24 Juni 2023</option><option value="23 & 24 Juni 2023">23 & 24 Juni 2023</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <h4 class="mt-4 mb-3" data-translate="categoryTitle">Pilih Kategori Partisipasi</h4>
-                    <div class="price-options">
-                        <div class="row">
-                            <div class="col-md-6"><div class="price-card" data-type="passive" data-ymj="Guru YMJ" data-price="0"><h5 data-translate="passiveTeacher">Passive - Guru YMJ</h5><p data-translate="observation">Observation</p><div class="price">Free</div></div></div>
-                            <div class="col-md-6"><div class="price-card" data-type="passive" data-ymj="Siswa YMJ" data-price="0"><h5 data-translate="passiveStudent">Passive - Siswa YMJ</h5><p data-translate="observation">Observation</p><div class="price">Free</div></div></div>
-                            <div class="col-md-6"><div class="price-card" data-type="passive" data-ymj="Non-YMJ" data-price="50000"><h5 data-translate="passiveNon">Passive - Non-YMJ</h5><p data-translate="observation">Observation</p><div class="price">IDR 50,000</div></div></div>
-                            <div class="col-md-6"><div class="price-card" data-type="active" data-ymj="Guru YMJ" data-price="100000"><h5 data-translate="activeTeacher">Active - Guru YMJ</h5><p data-translate="fullParticipation">Full Participation</p><div class="price">IDR 100,000</div></div></div>
-                            <div class="col-md-6"><div class="price-card" data-type="active" data-ymj="Siswa YMJ" data-price="500000"><h5 data-translate="activeStudent">Active - Siswa YMJ</h5><p data-translate="fullParticipation">Full Participation</p><div class="price">IDR 500,000</div></div></div>
-                            <div class="col-md-6"><div class="price-card" data-type="active" data-ymj="Non-YMJ" data-price="650000"><h5 data-translate="activeNon">Active - Non-YMJ</h5><p data-translate="fullParticipation">Full Participation</p><div class="price">IDR 650,000</div></div></div>
-                        </div>
-                    </div>
-                    
-                    <input type="hidden" id="participationType" name="participationType">
-                    <input type="hidden" id="price" name="price">
-
-                    <!-- INFORMASI PEMBAYARAN -->
-                    <div class="payment-info">
-                        <h4 data-translate="paymentInfoTitle">Informasi Pembayaran</h4>
-                        <div class="row">
-                            <!-- INFORMASI REKENING SELALU TERLIHAT -->
-                            <div class="col-md-6">
-                                <p><strong data-translate="bank">Bank:</strong> BCA</p>
-                                <p><strong data-translate="accountNumber">No. Rekening:</strong> 5880182244</p>
-                                <p><strong data-translate="accountName">a.n.:</strong> Yay Musik Jakarta</p>
-                            </div>
-                            
-                            <!-- QR, BARCODE, DAN UPLOAD BUKTI HANYA MUNCUL JIKA ADA HARGA -->
-                            <div class="col-md-6 text-center">
-                                <div id="paymentDetails" style="display: none;">
-                                     <p><strong data-translate="totalPayment">Total Pembayaran:</strong> <span id="totalPayment" class="fw-bold text-danger">IDR 0</span></p>
-                                     <hr class="my-3">
-                                     <p><strong data-translate="qrCode">QR Code untuk Pembayaran</strong></p>
-                                     <div id="qrCode"></div>
-                                     <hr class="my-3">
-                                     <p><strong data-translate="barcode">Barcode Rekening</strong></p>
-                                     <div id="barcode"></div>
-                                     <hr class="my-3">
-                                     <div class="mt-3">
-                                        <label for="paymentProof" class="form-label" data-translate="uploadProof">Upload Bukti Pembayaran</label>
-                                        <input type="file" class="form-control" id="paymentProof" name="paymentProof" accept="image/*" required>
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-4 text-center">
-                        <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="fas fa-paper-plane me-2"></i><span data-translate="submitBtn">Kirim Pendaftaran</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer text-center">
-        <div class="container">
-            <p class="mb-1"><span data-translate="contactUs">Hubungi Kami:</span> <a href="https://wa.me/628119892413" class="text-white">+62 811-9892-413</a></p>
-            <p>&copy; 2023 Yayasan Musik Jakarta. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Animation JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+    <!-- =================== JAVASCRIPT START =================== -->
     <script>
-        // Inisialisasi AOS
-        AOS.init({ duration: 800, once: true });
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- PENTING: GANTI DENGAN URL WEB APP ANDA ---
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwoTuoa3b7iys9exKuGU82S3XatsH3nwJfcPmxVQfGQRNRBopw82u0AQSCWxstR0u0ePw/exec';
 
-        // --- OBJEK TRANSLASI ---
+        const languageSelect = document.getElementById('languageSelect');
+        const form = document.getElementById('registrationForm');
+        const participationRadios = document.querySelectorAll('input[name="participationType"]');
+        const ymjStatusGroup = document.getElementById('ymjStatusGroup');
+        const ymjStatusOptions = document.getElementById('ymjStatusOptions');
+        const priceDisplay = document.getElementById('priceDisplay');
+        const bankInfo = document.getElementById('bankInfo');
+        const paymentProofGroup = document.getElementById('paymentProofGroup');
+        const paymentProofInput = document.getElementById('paymentProof');
+
         const translations = {
             id: {
-                navBrand: "MasterClass YMJ", heroTitle: "MasterClass Dengan Mr. Guiseppe Fausto Mudugno", heroSubtitle: "Director, Conservatorio \"Vechi-Tonelli\" Modena, Italy", heroOrganizer: "Organized by: Yayasan Musik Jakarta", heroDate: "23-24 Juni 2023", heroVenue: "YMJ BSD Auditorium",
-                formTitle: "Formulir Pendaftaran", successMessage: "Pendaftaran berhasil! Anda akan diarahkan ke WhatsApp.", errorMessage: "Terjadi kesalahan. Silakan coba lagi.", processingMessage: "Sedang memproses...",
-                labelName: "Nama Lengkap", labelEmail: "Email", labelPhone: "No. HP", labelSchool: "Asal Sekolah/Institusi", labelLevel: "Tingkat Sekolah", labelYmjStatus: "Status Keanggotaan YMJ", labelDate: "Pilih Tanggal Reservasi",
-                selectLevel: "Pilih Tingkat", levelSD: "SD", levelSMP: "SMP", levelSMA: "SMA", levelUniversity: "Universitas", levelProfessional: "Profesional",
-                selectYmjStatus: "Pilih Status", ymjTeacher: "Guru YMJ", ymjStudent: "Siswa YMJ", ymjNon: "Non-YMJ",
-                selectDate: "Pilih Tanggal",
-                categoryTitle: "Pilih Kategori Partisipasi",
-                passiveTeacher: "Passive - Guru YMJ", passiveStudent: "Passive - Siswa YMJ", passiveNon: "Passive - Non-YMJ",
-                activeTeacher: "Active - Guru YMJ", activeStudent: "Active - Siswa YMJ", activeNon: "Active - Non-YMJ",
-                observation: "Observation", fullParticipation: "Full Participation",
-                paymentInfoTitle: "Informasi Pembayaran", bank: "Bank", accountNumber: "No. Rekening", accountName: "a.n.", totalPayment: "Total Pembayaran", qrCode: "QR Code untuk Pembayaran",
-                barcode: "Barcode Rekening", uploadProof: "Upload Bukti Pembayaran", submitBtn: "Kirim Pendaftaran",
-                contactUs: "Hubungi Kami:",
-                errorSelectCategory: "Silakan pilih kategori partisipasi.", errorUploadProof: "Silakan upload bukti pembayaran."
+                passive: { ymj: 'Guru/Siswa YMJ', non: 'Non-YMJ' },
+                active: { ymj_teacher: 'Guru YMJ', ymj_student: 'Siswa YMJ', non: 'Non-YMJ' },
+                prices: { 'passive-ymj': 'GRATIS', 'passive-non': 'IDR 50.000', 'active-ymj_teacher': 'IDR 100.000', 'active-ymj_student': 'IDR 500.000', 'active-non': 'IDR 650.000' },
+                success: 'Pendaftaran Anda berhasil terkirim!', error: 'Terjadi kesalahan. Silakan coba lagi.', noDate: 'Anda harus memilih setidaknya satu tanggal.', noFile: 'Anda harus mengunggah bukti pembayaran.'
             },
             en: {
-                navBrand: "MasterClass YMJ", heroTitle: "MasterClass with Mr. Guiseppe Fausto Mudugno", heroSubtitle: "Director, Conservatorio \"Vechi-Tonelli\" Modena, Italy", heroOrganizer: "Organized by: Yayasan Musik Jakarta", heroDate: "June 23-24, 2023", heroVenue: "YMJ BSD Auditorium",
-                formTitle: "Registration Form", successMessage: "Registration successful! You will be redirected to WhatsApp.", errorMessage: "An error occurred. Please try again.", processingMessage: "Processing...",
-                labelName: "Full Name", labelEmail: "Email", labelPhone: "Phone Number", labelSchool: "School/Institution", labelLevel: "Education Level", labelYmjStatus: "YMJ Membership Status", labelDate: "Select Reservation Date",
-                selectLevel: "Select Level", levelSD: "Elementary", levelSMP: "Junior High", levelSMA: "Senior High", levelUniversity: "University", levelProfessional: "Professional",
-                selectYmjStatus: "Select Status", ymjTeacher: "YMJ Teacher", ymjStudent: "YMJ Student", ymjNon: "Non-YMJ",
-                selectDate: "Select Date",
-                categoryTitle: "Select Participation Category",
-                passiveTeacher: "Passive - YMJ Teacher", passiveStudent: "Passive - YMJ Student", passiveNon: "Passive - Non-YMJ",
-                activeTeacher: "Active - YMJ Teacher", activeStudent: "Active - YMJ Student", activeNon: "Active - Non-YMJ",
-                observation: "Observation", fullParticipation: "Full Participation",
-                paymentInfoTitle: "Payment Information", bank: "Bank", accountNumber: "Account Number", accountName: "a.n.", totalPayment: "Total Payment", qrCode: "QR Code for Payment",
-                barcode: "Account Barcode", uploadProof: "Upload Payment Proof", submitBtn: "Send Registration",
-                contactUs: "Contact Us:",
-                errorSelectCategory: "Please select a participation category.", errorUploadProof: "Please upload the payment proof."
+                passive: { ymj: 'YMJ Teacher/Student', non: 'Non-YMJ' },
+                active: { ymj_teacher: 'YMJ Teacher', ymj_student: 'YMJ Student', non: 'Non-YMJ' },
+                prices: { 'passive-ymj': 'FREE', 'passive-non': 'IDR 50,000', 'active-ymj_teacher': 'IDR 100,000', 'active-ymj_student': 'IDR 500,000', 'active-non': 'IDR 650,000' },
+                success: 'Your registration has been submitted successfully!', error: 'An error occurred. Please try again.', noDate: 'You must select at least one date.', noFile: 'You must upload a payment proof.'
             },
             zh: {
-                navBrand: "YMJ 大师课", heroTitle: "与朱塞佩·福斯托·穆杜尼奥大师的大师课", heroSubtitle: "意大利摩德纳“Vecchi-Tonelli”音乐学院院长", heroOrganizer: "主办方：雅加达音乐基金会", heroDate: "2023年6月23-24日", heroVenue: "YMJ BSD 礼堂",
-                formTitle: "注册表格", successMessage: "注册成功！您将被重定向到WhatsApp。", errorMessage: "发生错误。请再试一次。", processingMessage: "正在处理...",
-                labelName: "全名", labelEmail: "电子邮件", labelPhone: "电话号码", labelSchool: "学校/机构", labelLevel: "教育水平", labelYmjStatus: "YMJ 会员身份", labelDate: "选择预订日期",
-                selectLevel: "选择水平", levelSD: "小学", levelSMP: "初中", levelSMA: "高中", levelUniversity: "大学", levelProfessional: "专业",
-                selectYmjStatus: "选择身份", ymjTeacher: "YMJ 老师", ymjStudent: "YMJ 学生", ymjNon: "非 YMJ",
-                selectDate: "选择日期",
-                categoryTitle: "选择参与类别",
-                passiveTeacher: "被动 - YMJ 老师", passiveStudent: "被动 - YMJ 学生", passiveNon: "被动 - 非 YMJ",
-                activeTeacher: "主动 - YMJ 老师", activeStudent: "主动 - YMJ 学生", activeNon: "主动 - 非 YMJ",
-                observation: "观察", fullParticipation: "全面参与",
-                paymentInfoTitle: "付款信息", bank: "银行", accountNumber: "帐号", accountName: "帐户名", totalPayment: "总付款", qrCode: "付款二维码",
-                barcode: "账户条形码", uploadProof: "上传付款证明", submitBtn: "发送注册",
-                contactUs: "联系我们：",
-                errorSelectCategory: "请选择参与类别。", errorUploadProof: "请上传付款证明。"
+                passive: { ymj: 'YMJ 教师/学生', non: '非 YMJ' },
+                active: { ymj_teacher: 'YMJ 教师', ymj_student: 'YMJ 学生', non: '非 YMJ' },
+                prices: { 'passive-ymj': '免费', 'passive-non': '50,000 印尼盾', 'active-ymj_teacher': '100,000 印尼盾', 'active-ymj_student': '500,000 印尼盾', 'active-non': '650,000 印尼盾' },
+                success: '您的注册已成功提交！', error: '发生错误。请重试。', noDate: '您必须至少选择一个日期。', noFile: '您必须上传付款凭证。'
             }
         };
 
-        // --- FUNGSI UNTUK MENGUBAH BAHASA ---
-        function updateLanguage(lang) {
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
+        let currentLang = 'id';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang-' + lang + ']').forEach(element => {
+                element.innerText = element.getAttribute('data-lang-' + lang);
             });
+            updatePriceAndForm();
         }
-        document.getElementById('languageSelector').addEventListener('change', function() { updateLanguage(this.value); });
 
-        // --- LOGIKA FORMULIR ---
-        let selectedPrice = 0;
+        languageSelect.addEventListener('change', (e) => switchLanguage(e.target.value));
 
-        document.querySelectorAll('.price-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.querySelectorAll('.price-card').forEach(c => c.classList.remove('selected'));
-                this.classList.add('selected');
-                
-                selectedPrice = parseInt(this.getAttribute('data-price'));
-                const type = this.getAttribute('data-type');
-                const ymj = this.getAttribute('data-ymj');
+        function updatePriceAndForm() {
+            const participationType = document.querySelector('input[name="participationType"]:checked')?.value;
+            const ymjStatus = document.querySelector('input[name="ymjStatus"]:checked')?.value;
 
-                document.getElementById('participationType').value = `${type} - ${ymj}`;
-                document.getElementById('price').value = selectedPrice;
-                document.getElementById('ymjStatus').value = ymj;
-
-                if (selectedPrice > 0) {
-                    document.getElementById('paymentDetails').style.display = 'block';
-                    document.getElementById('totalPayment').textContent = `IDR ${selectedPrice.toLocaleString('id-ID')}`;
-                    generateQRCode();
-                    generateBarcode();
-                } else {
-                    document.getElementById('paymentDetails').style.display = 'none';
-                }
-            });
-        });
-
-        function generateQRCode() {
-            const qrContainer = document.getElementById('qrCode'); qrContainer.innerHTML = '';
-            const qrText = `Bank: BCA\nNo. Rek: 5880182244\na.n.: Yay Musik Jakarta\nJumlah: IDR ${selectedPrice.toLocaleString('id-ID')}`;
-            new QRCode(qrContainer, { text: qrText, width: 180, height: 180 });
+            if (!participationType) {
+                ymjStatusGroup.style.display = 'none'; priceDisplay.classList.remove('visible'); bankInfo.style.display = 'none'; paymentProofGroup.style.display = 'none'; paymentProofInput.required = false; return;
+            }
+            ymjStatusGroup.style.display = 'block'; ymjStatusOptions.innerHTML = '';
+            let optionsHtml = '';
+            if (participationType === 'passive') {
+                optionsHtml = `<label><input type="radio" name="ymjStatus" value="ymj" required> ${translations[currentLang].passive.ymj}</label><label><input type="radio" name="ymjStatus" value="non" required> ${translations[currentLang].passive.non}</label>`;
+            } else {
+                optionsHtml = `<label><input type="radio" name="ymjStatus" value="ymj_teacher" required> ${translations[currentLang].active.ymj_teacher}</label><label><input type="radio" name="ymjStatus" value="ymj_student" required> ${translations[currentLang].active.ymj_student}</label><label><input type="radio" name="ymjStatus" value="non" required> ${translations[currentLang].active.non}</label>`;
+            }
+            ymjStatusOptions.innerHTML = optionsHtml;
+            document.querySelectorAll('input[name="ymjStatus"]').forEach(radio => { radio.addEventListener('change', updatePriceAndForm); });
+            if (!ymjStatus) return;
+            const priceKey = `${participationType}-${ymjStatus}`;
+            const price = translations[currentLang].prices[priceKey];
+            const categoryText = ymjStatusOptions.querySelector(`input[value="${ymjStatus}"] + span`)?.innerText || ymjStatusOptions.querySelector(`input[value="${ymjStatus}"]`)?.nextSibling?.textContent.trim();
+            priceDisplay.innerHTML = `<strong>${categoryText}</strong><br>Biaya: ${price}`;
+            priceDisplay.classList.add('visible');
+            if (price !== translations[currentLang].prices['passive-ymj']) {
+                bankInfo.style.display = 'block'; paymentProofGroup.style.display = 'block'; paymentProofInput.required = true;
+            } else {
+                bankInfo.style.display = 'none'; paymentProofGroup.style.display = 'none'; paymentProofInput.required = false;
+            }
         }
         
-        function generateBarcode() {
-            const barcodeContainer = document.getElementById("barcode"); barcodeContainer.innerHTML = '';
-            JsBarcode("#barcode", "5880182244", { format: "CODE128", width: 2, height: 60, displayValue: true, fontSize: 16, margin: 10 });
-        }
+        participationRadios.forEach(radio => { radio.addEventListener('change', updatePriceAndForm); });
 
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            const currentLang = document.getElementById('languageSelector').value;
-            if (!document.querySelector('.price-card.selected')) { showError(translations[currentLang].errorSelectCategory); return; }
-            if (selectedPrice > 0 && !document.getElementById('paymentProof').files[0]) { showError(translations[currentLang].errorUploadProof); return; }
-            document.getElementById('loadingSpinner').style.display = 'block';
-            document.getElementById('submitBtn').disabled = true;
-            const formData = new FormData(e.target);
-            submitToGoogleSheets(formData);
+            const dates = Array.from(document.querySelectorAll('input[name="tanggal"]:checked')).map(cb => cb.value);
+            if (dates.length === 0) { alert(translations[currentLang].noDate); return; }
+            const isPaymentRequired = paymentProofInput.required;
+            if (isPaymentRequired && !paymentProofInput.files.length) { alert(translations[currentLang].noFile); return; }
+            
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            data.tanggalReservasi = dates.join(', ');
+            
+            const categoryText = priceDisplay.querySelector('strong').innerText;
+            const priceText = priceDisplay.innerText.split('Biaya: ')[1];
+            data.kategori = categoryText;
+            data.biaya = priceText;
+
+            if (paymentProofInput.files.length > 0) {
+                const file = paymentProofInput.files[0];
+                data.paymentProofName = file.name;
+                data.paymentProofMime = file.type;
+                data.paymentProofBase64 = await toBase64(file);
+            }
+
+            try {
+                form.querySelector('.submit-btn').disabled = true;
+                form.querySelector('.submit-btn').innerText = 'Mengirim...';
+                const response = await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    alert(translations[currentLang].success);
+                    form.reset();
+                    priceDisplay.classList.remove('visible'); bankInfo.style.display = 'none'; paymentProofGroup.style.display = 'none'; ymjStatusGroup.style.display = 'none';
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                console.error(error);
+                alert(translations[currentLang].error + '\n' + error.message);
+            } finally {
+                form.querySelector('.submit-btn').disabled = false;
+                form.querySelector('.submit-btn').innerText = document.querySelector('.submit-btn').getAttribute('data-lang-' + currentLang);
+            }
         });
 
-        function submitToGoogleSheets(formData) {
-            // *** GANTI DENGAN URL WEB APP ANDA YANG SEBENARNYA ***
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbz00UkxA0sj8c-U-QAnQq_b9sfl8g05pyPYAZ3XVsw9n-Qxj7UtTg3HLVXy5MCjYJ6Q/exec'; 
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => response.json())
-                .then(result => {
-                    if (result.status === 'success') { showSuccess(); setTimeout(() => redirectToWhatsApp(formData), 1500); }
-                    else { showError(result.message || 'Gagal mengirim data.'); }
-                })
-                .catch(error => { console.error('Error!', error.message); showError('Terjadi kesalahan jaringan. Silakan coba lagi.'); })
-                .finally(() => {
-                    document.getElementById('loadingSpinner').style.display = 'none';
-                    document.getElementById('submitBtn').disabled = false;
-                });
+        function toBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
         }
-
-        function redirectToWhatsApp(formData) {
-            const message = `*Pendaftaran MasterClass*\n\n` + `Nama: ${formData.get('name')}\n` + `Email: ${formData.get('email')}\n` + `HP: ${formData.get('phone')}\n` + `Sekolah: ${formData.get('school')}\n` + `Status: ${formData.get('ymjStatus')}\n` + `Partisipasi: ${formData.get('participationType')}\n` + `Tanggal: ${formData.get('reservationDate')}\n` + `Harga: IDR ${parseInt(formData.get('price')).toLocaleString('id-ID')}`;
-            const whatsappURL = `https://wa.me/6285924703474?text=${encodeURIComponent(message)}`;
-            window.open(whatsappURL, '_blank');
-            document.getElementById('registrationForm').reset();
-            document.querySelectorAll('.price-card').forEach(c => c.classList.remove('selected'));
-            document.getElementById('paymentDetails').style.display = 'none';
-            selectedPrice = 0;
-            document.getElementById('successMessage').style.display = 'none';
-        }
-
-        function showSuccess() { document.getElementById('successMessage').style.display = 'block'; }
-        function showError(msg) {
-            const errEl = document.getElementById('errorMessage');
-            errEl.querySelector('span').textContent = msg;
-            errEl.style.display = 'block';
-            setTimeout(() => { errEl.style.display = 'none'; }, 5000);
-        }
-
-        // Set bahasa default saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', () => { updateLanguage('id'); });
+    });
     </script>
+    <!-- ==================== JAVASCRIPT END ==================== -->
 </body>
 </html>
